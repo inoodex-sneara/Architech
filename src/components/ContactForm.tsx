@@ -109,7 +109,9 @@ export function ContactForm() {
 
       <div className="flex flex-col items-start gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-sm text-xs leading-5 text-slate-500">
-          Your email app will open with your enquiry ready to send.
+          {process.env.NEXT_PUBLIC_CONTACT_EMAIL
+            ? "Your email app will open with your enquiry ready to send."
+            : "Email submissions will be enabled once the studio contact email is configured."}
         </p>
         <button
           className="inline-flex min-h-12 w-full items-center justify-center bg-[#30495b] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#263b48] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#30495b] sm:w-auto"

@@ -1,4 +1,5 @@
 import { CraftSection } from "@/components/CraftSection";
+import { ClientsSection } from "@/components/ClientsSection";
 import { ExpertiseSection } from "@/components/ExpertiseSection";
 import { Hero } from "@/components/Hero";
 import { MissionSection } from "@/components/MissionSection";
@@ -14,6 +15,7 @@ export default function Home() {
       </div>
       <ExpertiseSection />
       <NewsSection />
+      <ClientsSection />
     </main>
   );
 }
