@@ -1,12 +1,11 @@
 async function run() {
   try {
-    const res = await fetch('https://www.rehab-bd.org/members', {
-      headers: { 'User-Agent': 'Mozilla/5.0' }
+    const res = await fetch('https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7njKR6BsUpq4R2Dyod9VwTVToGljJPoOsS6eJJe0GpDkiyxxrrIkhpJRmW8_BHV7SNdWdG-gfaiood5hxp0ubFia5vOcZTMW95cjtB-XlAWAv27PlO8FOB4QxAce6', {
+      headers: { 'User-Agent': 'Mozilla/5.0' },
+      redirect: 'manual'
     });
-    const text = await res.text();
-    const links = [...text.matchAll(/href="([^"]*member[^"]*)"/gi)].map(m => m[1]);
-    console.log('Member links:', links.slice(0, 10));
-  } catch (e) {
+    console.log('Redirect status:', res.status, res.headers.get('location'));
+  } catch(e) {
     console.error(e);
   }
 }
