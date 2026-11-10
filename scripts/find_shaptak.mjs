@@ -4,8 +4,8 @@ async function run() {
       headers: { 'User-Agent': 'Mozilla/5.0' }
     });
     const text = await res.text();
-    const matches = text.match(/href="([^"]*(?:shaptak|087)[^"]*)"/i);
-    console.log('Match on members page:', matches);
+    const links = [...text.matchAll(/href="([^"]*member[^"]*)"/gi)].map(m => m[1]);
+    console.log('Member links:', links.slice(0, 10));
   } catch (e) {
     console.error(e);
   }
