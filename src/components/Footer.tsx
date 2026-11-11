@@ -1,8 +1,17 @@
 "use client";
 
+import {
+  ArrowRight,
+  ArrowUp,
+  ArrowUpRight,
+  Check,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 function LinkedinIcon({ className }: { className?: string }) {
   return (
@@ -37,11 +46,13 @@ function YoutubeIcon({ className }: { className?: string }) {
 }
 
 const navLinks = [
-  { label: "PROJECTS", href: "#projects" },
-  { label: "ABOUT", href: "/about" },
-  { label: "NEWS", href: "#news" },
+  { label: "PROJECTS", href: "/projects" },
+  { label: "ABOUT US", href: "/about" },
+  { label: "EXPERTISE", href: "/expertise" },
+  { label: "NEWS & INSIGHTS", href: "/news" },
+  { label: "PEOPLE", href: "/people" },
   { label: "CAREERS", href: "/careers" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -53,12 +64,13 @@ const socialLinks = [
 
 export function Footer() {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       setCurrentYear(new Date().getFullYear());
     });
-
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
@@ -66,83 +78,192 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function handleNewsletterSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (email.trim()) {
+      setIsSubscribed(true);
+      setEmail("");
+      setTimeout(() => setIsSubscribed(false), 5000);
+    }
+  }
+
   return (
     <footer
       aria-label="Site footer"
-      className="relative z-30 border-t border-slate-800 bg-[#12232e] text-slate-400"
+      className="relative z-30 w-full overflow-hidden bg-[#0c141a] text-slate-300"
     >
-      <div className="mx-auto max-w-[1640px] px-6 py-8 sm:px-10 sm:py-10 lg:px-16">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          {/* Brand + Subtitle */}
-          <div className="flex flex-wrap items-baseline gap-3 sm:gap-4">
+      {/* =========================================================================
+          BACKGROUND ARCHITECTURAL IMAGE & MULTI-LAYER DARK GRADIENTS
+      ========================================================================= */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <Image
+          src="/images/footer-architectural-bg.webp"
+          alt="Architectural structure background"
+          fill
+          priority={false}
+          className="object-cover object-center opacity-25 scale-105 transition-transform duration-1000"
+        />
+        {/* Layered luxury lighting gradients */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c141a]/95 via-[#0a1117]/90 to-[#05090c]/98" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#bd7958]/10 via-transparent to-transparent" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1640px] px-6 py-12 sm:px-10 sm:py-16 lg:px-16">
+        {/* =========================================================================
+            MAIN FOOTER GRID (Brand, Navigation, Practice, Connect)
+        ========================================================================= */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-12">
+          {/* Col 1: Brand & Studio Location (5 Cols) */}
+          <div className="lg:col-span-5">
             <Link
-              aria-label="Inoodex home"
-              className="font-serif text-[26px] font-semibold leading-none tracking-[-0.07em] text-white transition-colors hover:text-[#d6a184] sm:text-[32px]"
               href="/"
+              aria-label="Inoodex Home"
+              className="font-serif text-3xl font-bold tracking-tight text-white transition-colors hover:text-[#d6a184] sm:text-4xl"
             >
               INOODEX
             </Link>
-            <span className="text-xs tracking-wider text-slate-400">
-              ARCHITECTURE &middot; DESIGN &middot; DHAKA
-            </span>
+            <p className="mt-1 text-xs font-semibold tracking-widest uppercase text-[#d6a184]">
+              ARCHITECTURE • DESIGN • DHAKA
+            </p>
+
+            <p className="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+              An architectural practice committed to context, craft, and environmental performance.
+              Creating thoughtful, human-centric spaces that endure.
+            </p>
+
+            {/* Direct Contact Details */}
+            <div className="mt-6 space-y-3 text-xs text-slate-300">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="h-4 w-4 shrink-0 text-[#d6a184] mt-0.5" />
+                <span>House 42, Road 11, Block D, Banani, Dhaka 1213, Bangladesh</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="h-4 w-4 shrink-0 text-[#d6a184]" />
+                <span>+880 1711-000000 / +880 2-9880000</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="h-4 w-4 shrink-0 text-[#d6a184]" />
+                <a
+                  href="mailto:contact@inoodex.com"
+                  className="hover:text-white transition-colors underline-offset-4 hover:underline"
+                >
+                  contact@inoodex.com
+                </a>
+              </div>
+            </div>
           </div>
 
-          {/* Navigation Links */}
-          <nav
-            aria-label="Footer Navigation"
-            className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold tracking-wider text-slate-300"
-          >
-            {navLinks.map((item) => (
-              <a
-                className="transition-colors hover:text-[#d6a184]"
-                href={item.href}
-                key={item.label}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+          {/* Col 2: Navigation Links (3 Cols) */}
+          <div className="lg:col-span-3 lg:pl-6">
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white">
+              Studio
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-xs font-medium text-slate-400">
+              {navLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="inline-block transition-colors hover:text-[#d6a184] hover:translate-x-1 duration-200"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Newsletter & Socials (4 Cols) */}
+          <div className="lg:col-span-4">
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white">
+              Newsletter
+            </h3>
+            <p className="mt-4 text-xs text-slate-400 leading-relaxed">
+              Subscribe to receive our latest architectural monographs, project announcements, and studio insights.
+            </p>
+
+            <form onSubmit={handleNewsletterSubmit} className="mt-4">
+              <div className="relative flex items-center">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                  className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-slate-500 backdrop-blur-sm transition-colors focus:border-[#d6a184] focus:outline-hidden focus:ring-1 focus:ring-[#d6a184]"
+                />
+                <button
+                  type="submit"
+                  aria-label="Subscribe to newsletter"
+                  className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#bd7958] text-white shadow-md transition-colors hover:bg-[#a86544]"
+                >
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+              {isSubscribed && (
+                <div className="mt-2 flex items-center gap-1.5 text-xs text-[#d6a184] review-card-enter">
+                  <Check className="h-3.5 w-3.5" />
+                  <span>Thank you for subscribing!</span>
+                </div>
+              )}
+            </form>
+
+            {/* Social channels */}
+            <div className="mt-6">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                Follow Our Studio
+              </p>
+              <div className="mt-3 flex items-center gap-2.5">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-all duration-200 hover:border-[#d6a184] hover:bg-[#bd7958] hover:text-white hover:scale-105"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="my-6 border-t border-white/10" />
+        {/* =========================================================================
+            BOTTOM DIVIDER & COPYRIGHT ROW
+        ========================================================================= */}
+        <div className="mt-14 border-t border-white/10 pt-8">
+          <div className="flex flex-col items-center justify-between gap-4 text-xs text-slate-400 sm:flex-row">
+            <p>
+              &copy; {currentYear ?? ""} INOODEX ARCHITECTS. All rights reserved.
+            </p>
 
-        {/* Bottom row: Copyright + Social Icons + Back to Top */}
-        <div className="flex flex-col items-center justify-between gap-4 text-xs text-slate-400 sm:flex-row">
-          <p>
-            &copy; {currentYear ?? ""} INOODEX ARCHITECTS. All rights reserved.
-          </p>
+            <div className="flex flex-wrap items-center gap-6">
+              <Link href="/contact" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/contact" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/about" className="hover:text-white transition-colors">
+                Sitemap
+              </Link>
 
-          <div className="flex items-center gap-5">
-            {/* Social channels */}
-            <div className="flex items-center gap-2">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    aria-label={social.name}
-                    className="flex size-7 items-center justify-center rounded border border-white/10 bg-white/5 text-slate-300 transition-colors hover:border-[#d6a184] hover:bg-[#d6a184] hover:text-[#142936]"
-                    href={social.href}
-                    key={social.name}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <Icon className="size-3.5" />
-                  </a>
-                );
-              })}
+              {/* Back to top button */}
+              <button
+                type="button"
+                onClick={scrollToTop}
+                aria-label="Scroll back to top"
+                className="group flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-[#d6a184] hover:text-[#d6a184]"
+              >
+                <span>Back to Top</span>
+                <ArrowUp className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+              </button>
             </div>
-
-            {/* Back to top button */}
-            <button
-              aria-label="Scroll back to top"
-              className="group flex h-7 items-center gap-1.5 rounded border border-white/10 bg-white/5 px-2.5 text-xs text-slate-400 transition-colors hover:border-[#d6a184] hover:text-[#d6a184]"
-              onClick={scrollToTop}
-              type="button"
-            >
-              <span>Top</span>
-              <ArrowUp className="size-3 transition-transform duration-200 group-hover:-translate-y-0.5" />
-            </button>
           </div>
         </div>
       </div>
