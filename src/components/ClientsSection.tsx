@@ -2,160 +2,121 @@ import Image from "next/image";
 
 type Client = {
   name: string;
-  secondary?: string;
-  style: string;
-  logo?: string;
-  logoSurface?: string;
+  logo: string;
 };
 
-const clients = [
+const clients: Client[] = [
   {
     name: "ORION",
     logo: "/clients/orion.svg",
-    style: "font-serif text-2xl font-semibold tracking-wide",
   },
   {
     name: "SANMAR",
-    logo: "/clients/sanmar.svg",
-    logoSurface: "bg-[#283b4b]",
-    style: "font-serif text-xl tracking-[0.12em]",
+    logo: "/clients/sanmar-dark.svg",
   },
   {
-    name: "ANWAR",
-    secondary: "LANDMARK",
-    logo: "/clients/anwar-landmark.svg",
-    logoSurface: "bg-[#283b4b]",
-    style: "text-xl font-black tracking-[0.16em]",
-  },
-  { name: "ABC", style: "font-serif text-2xl font-bold tracking-[0.2em]" },
-  {
-    name: "RANGS",
-    secondary: "PROPERTIES",
-    logo: "/clients/rangs.svg",
-    logoSurface: "bg-[#283b4b]",
-    style: "text-xl font-extrabold tracking-[0.2em]",
+    name: "ANWAR LANDMARK",
+    logo: "/clients/anwar-landmark-dark.svg",
   },
   {
-    name: "KF",
-    secondary: "KIDNEY FOUNDATION",
+    name: "ABC",
+    logo: "/clients/abc.jpg",
+  },
+  {
+    name: "RANGS PROPERTIES",
+    logo: "/clients/rangs-properties.svg",
+  },
+  {
+    name: "KIDNEY FOUNDATION",
     logo: "/clients/kidney-foundation.png",
-    style: "font-serif text-3xl font-semibold",
   },
   {
     name: "BDG",
     logo: "/clients/bdg.png",
-    logoSurface: "bg-[#283b4b]",
-    style: "font-serif text-3xl tracking-[0.12em]",
   },
   {
-    name: "AWR",
-    secondary: "REAL ESTATE",
+    name: "AWR REAL ESTATE",
     logo: "/clients/awr.png",
-    style: "font-serif text-2xl font-medium tracking-[0.12em]",
   },
-  { name: "3G", style: "text-3xl font-black italic tracking-tight" },
   {
     name: "SUNNYDALE",
-    secondary: "SCHOOL",
     logo: "/clients/sunnydale.png",
-    style: "font-serif text-lg font-bold tracking-wide",
   },
   {
-    name: "PGCB",
-    secondary: "POWER GRID COMPANY",
-    style: "font-serif text-2xl font-bold tracking-[0.12em]",
-  },
-  {
-    name: "kazifarms",
+    name: "KAZI FARMS",
     logo: "/clients/kazi-farms.png",
-    style: "text-2xl font-extrabold tracking-tight",
   },
   {
-    name: "rakeen",
+    name: "RAKEEN",
     logo: "/clients/rakeen-bd.png",
-    logoSurface: "bg-[#283b4b]",
-    style: "text-2xl font-semibold tracking-tight",
   },
   {
-    name: "US-Bangla",
-    secondary: "Hi-Tech",
-    style: "text-lg font-medium tracking-wide",
+    name: "US-BANGLA",
+    logo: "/clients/us-bangla.png",
   },
   {
     name: "SUVASTU",
-    secondary: "PROPERTIES",
-    logo: "/clients/suvastu.svg",
-    logoSurface: "bg-[#283b4b]",
-    style: "text-xl font-black tracking-[0.18em]",
+    logo: "/clients/suvastu-dark.svg",
   },
   {
     name: "SHAPTAK",
-    secondary: "GRIHAYAN",
-    style: "text-lg font-bold tracking-[0.16em]",
+    logo: "/clients/shaptak.jpg",
   },
   {
     name: "CPA",
-    secondary: "CHITTAGONG PORT AUTHORITY",
-    style: "font-serif text-2xl font-bold tracking-[0.14em]",
+    logo: "/clients/cpa.png",
   },
-] satisfies Client[];
+];
 
 export function ClientsSection() {
   return (
     <section
       aria-labelledby="clients-heading"
-      className="bg-[#fafafa] text-slate-800"
+      className="bg-[#fbfbfb] text-slate-800"
       id="clients"
     >
-      <div className="bg-white">
-        <div className="mx-auto grid max-w-[1640px] gap-5 px-6 py-12 sm:px-10 sm:py-16 md:grid-cols-[1fr_1fr] md:items-center md:gap-10 lg:px-16 lg:py-20">
-          <h2
-            className="font-sans text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl"
-            id="clients-heading"
-          >
-            Clients
-          </h2>
-          <p className="max-w-2xl text-sm leading-6 text-slate-500 sm:text-base sm:leading-7">
-            We work alongside organizations across Bangladesh to create places
-            that support communities, businesses, and a brighter future.
+      <div className="border-b border-slate-200/60 bg-white">
+        <div className="mx-auto grid max-w-[1640px] gap-3 px-5 py-8 sm:gap-5 sm:px-10 sm:py-12 md:grid-cols-[1fr_1fr] md:items-center md:gap-10 lg:px-16 lg:py-14">
+          <div>
+            <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-[#a86544] uppercase sm:text-sm">
+              TRUSTED PARTNERS
+            </p>
+            <h2
+              className="font-sans text-2xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+              id="clients-heading"
+            >
+              Our Clients
+            </h2>
+          </div>
+          <p className="max-w-2xl text-xs leading-relaxed text-slate-500 sm:text-sm sm:leading-6 lg:text-base lg:leading-7">
+            We work alongside leading developers, institutions, and organizations across
+            Bangladesh to create places that support communities, businesses, and sustainable growth.
           </p>
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1640px] px-6 py-8 sm:px-10 sm:py-12 lg:px-16 lg:py-14">
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
+      <div className="mx-auto max-w-[1640px] px-4 py-6 sm:px-10 sm:py-10 lg:px-16 lg:py-12">
+        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3.5 md:grid-cols-4 lg:grid-cols-5">
           {clients.map((client) => (
-            <li
-              className="flex aspect-[1.15/1] min-w-0 items-center justify-center bg-white p-3 text-center text-slate-500 transition-colors duration-300 hover:text-[#30495b] sm:p-5"
+            <div
+              className="group flex h-[68px] items-center justify-center rounded-xl border border-slate-200/80 bg-white px-3 py-2 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bd7958]/50 hover:shadow-md sm:h-[82px] sm:px-4 sm:py-3 lg:h-[90px]"
               key={client.name}
             >
-              {client.logo ? (
-                <div
-                  className={`relative flex h-16 w-full max-w-[190px] items-center justify-center ${client.logoSurface ?? ""}`}
-                >
-                  <Image
-                    alt={`${client.name}${client.secondary ? ` ${client.secondary}` : ""} logo`}
-                    className="h-full w-full object-contain p-2"
-                    height={100}
-                    src={client.logo}
-                    unoptimized={client.logo.endsWith(".svg")}
-                    width={220}
-                  />
-                </div>
-              ) : (
-                <span className={client.style}>
-                  {client.name}
-                  {client.secondary ? (
-                    <span className="mt-1 block text-[9px] font-semibold tracking-[0.14em] sm:text-[10px]">
-                      {client.secondary}
-                    </span>
-                  ) : null}
-                </span>
-              )}
-            </li>
+              <div className="relative flex h-8 w-full max-w-[110px] items-center justify-center sm:h-10 sm:max-w-[130px] lg:h-11 lg:max-w-[140px]">
+                <Image
+                  alt={`${client.name} logo`}
+                  className="h-full w-full object-contain transition-all duration-300"
+                  height={44}
+                  src={client.logo}
+                  unoptimized={client.logo.endsWith(".svg")}
+                  width={140}
+                />
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
 }
+

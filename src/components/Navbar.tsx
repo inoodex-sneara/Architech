@@ -9,9 +9,9 @@ import { useEffect, useRef, useState } from "react";
 
 const menuItems = [
   { label: "PROJECTS", href: "/projects" },
-  { label: "PEOPLE", href: "#people" },
+  { label: "ABOUT", href: "/about" },
   { label: "NEWS", href: "news" },
-  { label: "CAREERS", href: "#careers" },
+  { label: "CAREERS", href: "/careers" },
   { label: "CONTACT", href: "/contact" },
 ];
 
@@ -24,11 +24,11 @@ const popularSearches = [
 
 const searchResults = [
   {
-    category: "PEOPLE",
+    category: "ABOUT",
     title: "Meet the people behind Inoodex",
-    href: "#people",
-    image: "/images/S_260721_cropped_2400x1200-1440x720.webp",
-    alt: "The Inoodex team gathered on a rooftop",
+    href: "/about",
+    image: "/images/inoodex-team-photo.png",
+    alt: "The Inoodex team gathered together at a studio event",
     keywords: "studio team people architects awards",
   },
   {
@@ -93,35 +93,37 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white">
-      <div className="flex h-[82px] items-center justify-between px-5 max-[360px]:px-3 sm:px-8">
+      <div className="flex h-[68px] items-center justify-between px-4 sm:h-[82px] sm:px-8">
         <Link
           aria-label="Inoodex home"
-          className="shrink-0 font-serif text-[28px] leading-none tracking-[-0.07em] text-slate-600 max-[360px]:text-[24px] sm:text-[48px]"
+          className="shrink-0 font-sans text-2xl font-semibold leading-none tracking-[-0.06em] text-slate-900 sm:text-[40px]"
           href="/"
         >
           INOODEX
         </Link>
 
-      
-
-        <div className="flex items-center gap-3 text-slate-800 max-[360px]:gap-2 sm:gap-5">
+        <div className="flex items-center gap-2 text-slate-800 sm:gap-3.5">
           <button
             aria-controls="site-search"
             aria-expanded={isSearchOpen}
-            className="flex h-10 items-center gap-2 border border-slate-300 px-3 text-sm font-medium transition-colors hover:border-[#d6a184] hover:bg-[#fbf5f0] max-[360px]:gap-1 max-[360px]:px-2 max-[360px]:text-xs"
+            className={`flex h-10 items-center justify-center gap-2 border px-2.5 text-xs font-semibold uppercase tracking-wider transition-colors sm:h-11 sm:min-w-44 sm:px-5 sm:text-sm ${
+              isSearchOpen
+                ? "border-slate-900 bg-slate-900 text-white"
+                : "border-slate-300 bg-white text-slate-800 hover:border-[#d6a184] hover:bg-[#fbf5f0]"
+            }`}
             onClick={() => {
-              setIsSearchOpen(true);
+              setIsSearchOpen((open) => !open);
               setIsMenuOpen(false);
             }}
             type="button"
           >
-            <span>Search</span>
-            <Search aria-hidden="true" className="size-4" strokeWidth={2} />
+            <span className="hidden sm:inline">Search</span>
+            <Search aria-hidden="true" className="size-4 sm:size-[17px]" strokeWidth={2} />
           </button>
           <button
             aria-controls="site-menu"
             aria-expanded={isMenuOpen}
-            className="flex h-10 items-center gap-2 border border-[#d6a184] bg-[#d6a184] px-3 text-sm font-semibold text-[#263b48] transition-colors hover:bg-[#e3b89e] max-[360px]:gap-1 max-[360px]:px-2 max-[360px]:text-xs"
+            className="flex h-10 items-center justify-center gap-1.5 border border-[#d6a184] bg-[#d6a184] px-3.5 text-xs font-semibold uppercase tracking-wider text-[#142936] transition-colors hover:bg-[#e3b89e] sm:h-11 sm:px-5 sm:text-sm"
             onClick={() => {
               setIsMenuOpen((open) => !open);
               setIsSearchOpen(false);
@@ -129,15 +131,15 @@ export function Navbar() {
             }}
             type="button"
           >
-              <span>Menu</span>
-              <Menu
-                aria-hidden="true"
-                className="size-4"
-                strokeWidth={2}
-              />
+            <span>{isMenuOpen ? "Close" : "Menu"}</span>
+            {isMenuOpen ? (
+              <X aria-hidden="true" className="size-4" strokeWidth={2.5} />
+            ) : (
+              <Menu aria-hidden="true" className="size-4" strokeWidth={2.5} />
+            )}
           </button>
           {isMenuOpen && (
-            <div className="fixed right-0 top-[82px] z-40 h-[calc(100dvh-82px)] w-full overflow-y-auto border-l border-slate-700 bg-[#172f3d] shadow-xl sm:w-[420px]">
+            <div className="fixed right-0 top-[68px] z-40 h-[calc(100dvh-68px)] w-full overflow-y-auto border-l border-slate-700 bg-[#172f3d] shadow-xl sm:top-[82px] sm:h-[calc(100dvh-82px)] sm:w-[420px]">
               <div className="absolute inset-0">
                 <Image
                   alt=""
@@ -215,7 +217,7 @@ export function Navbar() {
         <div
           aria-label="Search Inoodex"
           aria-modal="false"
-          className="fixed right-0 top-[82px] z-[60] flex h-[calc(100dvh-82px)] w-full flex-col overflow-y-auto border-l border-zinc-200 bg-white px-5 pb-8 pt-3 shadow-xl sm:w-[420px] sm:px-6 sm:pb-10 lg:w-[450px]"
+          className="fixed right-0 top-[68px] z-[60] flex h-[calc(100dvh-68px)] w-full flex-col overflow-y-auto border-l border-zinc-200 bg-white px-5 pb-8 pt-3 shadow-xl sm:top-[82px] sm:h-[calc(100dvh-82px)] sm:w-[420px] sm:px-6 sm:pb-10 lg:w-[450px]"
           id="site-search"
           role="dialog"
         >

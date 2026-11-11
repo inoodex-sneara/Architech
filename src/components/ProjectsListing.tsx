@@ -2,25 +2,49 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowUpRight, MapPin, X } from "lucide-react";
 import { projects, projectTypes, type ProjectType } from "@/lib/projects";
 
 const pageSize = 9;
 const featuredProject = projects[0];
 
 export function ProjectsListing() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const locationParam = searchParams.get("location");
+  const statusParam = searchParams.get("status");
+
   const [activeType, setActiveType] = useState<ProjectType>("ALL");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredProjects = useMemo(
-    () =>
+  const filteredProjects = useMemo(() => {
+    let list =
       activeType === "ALL"
         ? projects.filter((project) => project.title !== featuredProject.title)
-        : projects.filter((project) => project.type === activeType),
-    [activeType],
-  );
+        : projects.filter((project) => project.type === activeType);
+
+    if (locationParam) {
+      const q = locationParam.toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.location.toLowerCase().includes(q) ||
+          p.title.toLowerCase().includes(q),
+      );
+    }
+
+    return list;
+  }, [activeType, locationParam]);
+
   const projectCount =
-    filteredProjects.length + (activeType === "ALL" ? 1 : 0);
-  const pageCount = Math.ceil(filteredProjects.length / pageSize);
+    filteredProjects.length +
+    (activeType === "ALL" &&
+    (!locationParam ||
+      featuredProject.location.toLowerCase().includes(locationParam.toLowerCase()) ||
+      featuredProject.title.toLowerCase().includes(locationParam.toLowerCase()))
+      ? 1
+      : 0);
+  const pageCount = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
   const visibleProjects = filteredProjects.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize,
@@ -31,15 +55,23 @@ export function ProjectsListing() {
     setCurrentPage(1);
   }
 
+  function clearLocationFilter() {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("location");
+    const qs = params.toString();
+    router.push(qs ? `/projects?${qs}` : "/projects");
+  }
+
   return (
-    <main className="flex-1 bg-white py-8 text-slate-700 sm:py-12">
+    <main className="flex-1 bg-[#f7f6f3] py-8 text-slate-700 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-[1640px] px-6 sm:px-10 lg:px-16">
         <header className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 md:flex-row md:items-end">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.2em] text-slate-500 sm:text-sm">
+          <div className="max-w-4xl">
+            <p className="flex items-center gap-2 text-[10px] font-bold tracking-[0.22em] text-[#a86544] sm:text-xs">
+              <span aria-hidden="true" className="size-2 rounded-full bg-[#d6a184]" />
               BANGLADESH / PROJECT CONCEPTS
             </p>
-            <h1 className="mt-3 font-sans text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#172f3d] sm:text-5xl lg:text-[64px]">
               Projects across Bangladesh
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
@@ -48,43 +80,56 @@ export function ProjectsListing() {
               life.
             </p>
           </div>
-          <p className="text-sm font-medium text-slate-500">
-            {projectCount} design concepts
+          <p className="inline-flex w-fit items-center gap-2 rounded-full border border-[#172f3d]/10 bg-white px-4 py-2 text-xs font-semibold text-slate-600 shadow-sm sm:text-sm">
+            <span className="font-semibold text-[#172f3d]">{projectCount}</span>
+            design concepts
           </p>
         </header>
 
         {activeType === "ALL" ? (
           <section
             aria-label="Featured project"
-            className="group grid overflow-hidden bg-[#30495b] text-white md:grid-cols-[1.65fr_1fr]"
+            className="group grid overflow-hidden rounded-2xl bg-[#172f3d] text-white shadow-[0_20px_60px_rgba(23,47,61,0.12)] md:grid-cols-[1.55fr_1fr]"
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-slate-200 md:aspect-[1.55/1]">
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-200 md:aspect-auto md:min-h-[440px]">
               <Image
                 alt={featuredProject.imageAlt}
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 65vw"
                 src={featuredProject.image}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-slate-950/10" />
+              <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/30 bg-[#172f3d]/55 px-3 py-2 text-[10px] font-semibold tracking-[0.16em] text-white backdrop-blur-md sm:bottom-7 sm:left-7">
+                FEATURED PROJECT
+                <ArrowUpRight aria-hidden="true" className="size-3.5" />
+              </span>
             </div>
-            <div className="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10">
+            <div className="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10 xl:p-12">
               <div>
-                <p className="text-xs font-semibold tracking-[0.16em] text-white/70">
-                  FEATURED CONCEPT / BANGLADESH · {featuredProject.type}
+                <p className="text-[10px] font-bold tracking-[0.2em] text-[#e4b396] sm:text-xs">
+                  FEATURED CONCEPT <span className="mx-1.5 text-white/35">/</span>{" "}
+                  {featuredProject.type}
                 </p>
-                <h2 className="mt-4 font-sans text-3xl font-semibold leading-tight sm:text-4xl">
+                <h2 className="mt-5 max-w-xl font-sans text-3xl font-semibold leading-[1.05] tracking-[-0.035em] sm:text-4xl lg:text-[42px]">
                   {featuredProject.title}
                 </h2>
-                <p className="mt-3 text-sm text-white/75 sm:text-base">
+                <p className="mt-4 flex items-center gap-2 text-sm text-white/70 sm:text-base">
+                  <MapPin aria-hidden="true" className="size-4 text-[#e4b396]" />
                   {featuredProject.location}
                 </p>
               </div>
-              <p className="max-w-md text-sm leading-6 text-white/85 sm:text-base sm:leading-7">
-                A welcoming campus concept that brings learning, research, and
-                community life together.
-              </p>
+              <div>
+                <div aria-hidden="true" className="mb-5 h-px w-full bg-white/20" />
+                <p className="max-w-md text-sm leading-6 text-white/80 sm:text-base sm:leading-7">
+                  A welcoming campus concept that brings learning, research, and
+                  community life together.
+                </p>
+                <p className="mt-6 text-[10px] font-semibold tracking-[0.18em] text-white/45">
+                  INOODEX <span className="mx-2 text-[#e4b396]">·</span> BANGLADESH
+                </p>
+              </div>
             </div>
           </section>
         ) : null}
@@ -117,7 +162,7 @@ export function ProjectsListing() {
                 ▾
               </span>
             </label>
-            <div className="hidden flex-wrap gap-x-4 gap-y-2 md:flex">
+            <div className="hidden flex-wrap items-center gap-x-4 gap-y-2 md:flex">
               {projectTypes.map((type) => (
                 <button
                   aria-pressed={activeType === type}
@@ -133,6 +178,20 @@ export function ProjectsListing() {
                   {type}
                 </button>
               ))}
+
+              {locationParam && (
+                <div className="flex items-center gap-1.5 rounded-full border border-[#d6a184]/60 bg-[#fbf6f3] px-3 py-1 text-xs font-semibold text-[#8d4e34]">
+                  <span>Location: {locationParam}</span>
+                  <button
+                    aria-label="Clear location filter"
+                    className="cursor-pointer rounded-full p-0.5 transition-colors hover:bg-[#ebd5c8]"
+                    onClick={clearLocationFilter}
+                    type="button"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -145,7 +204,7 @@ export function ProjectsListing() {
           >
             {visibleProjects.map((project, index) => (
               <article
-                className="group min-w-0 overflow-hidden border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_16px_40px_rgba(27,45,57,0.12)]"
+                className="group min-w-0 overflow-hidden rounded-xl border border-slate-200/80 bg-white transition duration-300 hover:-translate-y-1 hover:border-[#d6a184]/70 hover:shadow-[0_16px_40px_rgba(27,45,57,0.12)]"
                 key={project.title}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">

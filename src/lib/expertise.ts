@@ -28,8 +28,8 @@ export const expertiseAreas: ExpertiseArea[] = [
     title: "Sustainability",
     description:
       "We employ advanced tools and best practices to minimize carbon and maximize resilience.",
-    image: "/images/1849_Square1x1_Sustainability.webp",
-    imageAlt: "A landscaped garden beside a sustainable office building",
+    image: "/images/specialty-sustainability.png",
+    imageAlt: "A contemporary residential building with planted balconies and landscaped grounds",
     intro:
       "The scale and impact of our work shape an evidence-led approach to sustainability. We bring design, materials, energy, and landscape together to support healthier buildings, more resilient communities, and a lower-carbon future.",
     sections: [
@@ -140,8 +140,8 @@ export const expertiseAreas: ExpertiseArea[] = [
     title: "Technology",
     description:
       "We leverage computational design and environmental analysis to develop informed design solutions.",
-    image: "/images/scout.webp",
-    imageAlt: "A computational urban model with color-coded building forms",
+    image: "/images/specialty-technology-pool.png",
+    imageAlt: "A contemporary house beside a swimming pool under a clear sky",
     intro:
       "We use computation, research, and emerging digital tools to make complex design questions easier to see and solve. Technology helps our teams test ideas, understand performance, and make informed decisions from early concepts through delivery.",
     sections: [
@@ -155,6 +155,12 @@ export const expertiseAreas: ExpertiseArea[] = [
             alt: "A color-coded computational model of a city",
             category: "RESEARCH",
             title: "Urban Systems",
+          },
+          {
+            src: "/images/specialty-technology-green-building.png",
+            alt: "A contemporary residential building with planted balconies",
+            category: "PROJECT",
+            title: "Integrated Architecture",
           },
           {
             src: "/images/Queens_Braid_Timber_Stadium_SOM_04-1731077764-scaled.jpg",

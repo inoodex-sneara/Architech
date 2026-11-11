@@ -20,14 +20,18 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const instance = new Lenis({
-      duration: 1.35,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.92,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.2,
       infinite: false,
     });
     lenisRef.current = instance;
@@ -35,14 +39,15 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     gsap.registerPlugin(ScrollTrigger);
     instance.on("scroll", ScrollTrigger.update);
 
-    const tickerUpdate = (time: number) => {
-      instance.raf(time * 1000);
-    };
-    gsap.ticker.add(tickerUpdate);
-    gsap.ticker.lagSmoothing(0);
+    let rafId: number;
+    function raf(time: number) {
+      instance.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
 
     return () => {
-      gsap.ticker.remove(tickerUpdate);
+      cancelAnimationFrame(rafId);
       instance.destroy();
       lenisRef.current = null;
     };

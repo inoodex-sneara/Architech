@@ -6,11 +6,11 @@ export function NewsSection() {
   return (
     <section
       aria-labelledby="news-heading"
-      className="bg-white py-14 text-black sm:py-20 lg:py-24"
+      className="bg-white pt-6 pb-14 text-black sm:pt-8 sm:pb-20 lg:pt-10 lg:pb-20"
       id="news"
     >
       <div className="mx-auto max-w-[1640px] px-6 sm:px-10 lg:px-16">
-        <div className="mb-9 flex flex-col gap-5 sm:mb-12 md:flex-row md:items-end md:justify-between">
+        <div className="mb-6 flex flex-col gap-4 sm:mb-8 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
             <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-black sm:text-sm">
               STORIES &amp; IDEAS
