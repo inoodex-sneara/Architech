@@ -36,7 +36,7 @@ export default function CareersPage() {
     <main className="flex-1 bg-[#f6f5f2] text-[#172f3d]">
       <section className="mx-auto grid min-h-[min(760px,calc(100svh-82px))] max-w-[1640px] items-center gap-10 px-6 py-12 sm:px-10 sm:py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-16 lg:py-20">
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.22em] text-[#bd7958] sm:text-sm">
+          <p className="text-xs font-semibold tracking-[0.22em] text-brand-accent-strong sm:text-sm">
             CAREERS / INOODEX
           </p>
           <h1 className="mt-5 text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-7xl xl:text-[88px]">
@@ -48,7 +48,7 @@ export default function CareersPage() {
             your ambition—we&apos;d like to hear from you.
           </p>
           <a
-            className="mt-8 inline-flex min-h-12 items-center gap-3 bg-[#172f3d] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#30495b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#bd7958]"
+            className="mt-8 inline-flex min-h-12 items-center gap-3 bg-[#172f3d] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#30495b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
             href="#share-interest"
           >
             Share your interest
@@ -78,7 +78,7 @@ export default function CareersPage() {
       >
         <div className="mx-auto max-w-[1640px] px-6 sm:px-10 lg:px-16">
           <div className="grid gap-8 border-b border-slate-200 pb-10 sm:pb-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#bd7958] sm:text-sm">
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent-strong sm:text-sm">
               HOW WE THINK
             </p>
             <div>
@@ -100,7 +100,7 @@ export default function CareersPage() {
           <div className="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
             {studioValues.map(({ icon: Icon, title, description }) => (
               <article className="bg-white p-6 sm:p-8 lg:p-10" key={title}>
-                <Icon aria-hidden="true" className="size-6 text-[#bd7958]" />
+                <Icon aria-hidden="true" className="size-6 text-brand-accent-strong" />
                 <h3 className="mt-8 text-xl font-semibold tracking-tight sm:text-2xl">
                   {title}
                 </h3>
@@ -118,7 +118,7 @@ export default function CareersPage() {
         className="mx-auto grid max-w-[1640px] gap-10 px-6 py-16 sm:px-10 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-16 lg:py-24"
       >
         <div>
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#bd7958] sm:text-sm">
+          <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent-strong sm:text-sm">
             OPPORTUNITIES
           </p>
           <h2
@@ -133,7 +133,7 @@ export default function CareersPage() {
             little about yourself.
           </p>
           <Link
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#172f3d] underline decoration-[#bd7958] decoration-2 underline-offset-4 transition-colors hover:text-[#bd7958]"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#172f3d] underline decoration-brand-accent decoration-2 underline-offset-4 transition-colors hover:text-brand-accent-strong"
             href="/contact"
           >
             Learn more about Inoodex
@@ -146,7 +146,7 @@ export default function CareersPage() {
           id="share-interest"
         >
           <div className="mb-7 border-b border-slate-200 pb-5">
-            <p className="text-xs font-semibold tracking-[0.16em] text-[#bd7958]">
+            <p className="text-xs font-semibold tracking-[0.16em] text-brand-accent-strong">
               START A CONVERSATION
             </p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">

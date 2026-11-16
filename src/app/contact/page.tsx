@@ -30,7 +30,7 @@ export default function ContactPage() {
             className="border border-slate-200 bg-white p-5 sm:p-8 lg:p-10"
           >
             <div className="mb-7 border-b border-slate-200 pb-5">
-              <p className="text-xs font-semibold tracking-[0.16em] text-[#bd7958]">
+              <p className="text-xs font-semibold tracking-[0.16em] text-brand-accent-strong">
                 PROJECT ENQUIRY
               </p>
               <h2

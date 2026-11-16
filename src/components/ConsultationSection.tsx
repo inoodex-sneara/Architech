@@ -40,9 +40,8 @@ export function ConsultationSection() {
       if (imageRef.current) {
         gsap.fromTo(
           imageRef.current,
-          { opacity: 0, y: 50, scale: 0.96 },
+          { y: 50, scale: 0.96 },
           {
-            opacity: 1,
             y: 0,
             scale: 1,
             duration: 1.2,
@@ -95,13 +94,13 @@ export function ConsultationSection() {
             fill="none"
             id="consultationCirclePath"
           />
-          <text className="fill-white/85 text-[8.5px] font-semibold tracking-[0.24em] uppercase transition-colors group-hover:fill-[#e4b396]">
+          <text className="fill-white/85 text-[8.5px] font-semibold tracking-[0.24em] uppercase transition-colors group-hover:fill-brand-accent">
             <textPath href="#consultationCirclePath">
               • GET A FREE CONSULTATION • INOODEX ARCHITECTURE
             </textPath>
           </text>
         </svg>
-        <div className="absolute flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-white/10 text-[#e4b396] shadow-md backdrop-blur-md transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10 lg:h-12 lg:w-12">
+        <div className="absolute flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-white/10 text-brand-accent shadow-md backdrop-blur-md transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10 lg:h-12 lg:w-12">
           <ArrowDown className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
         </div>
       </Link>
@@ -115,7 +114,7 @@ export function ConsultationSection() {
             ref={leftColRef}
           >
             {/* Kicker */}
-            <div className="stagger-reveal flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.2em] text-[#e4b396] uppercase sm:gap-2 sm:text-xs lg:text-sm">
+            <div className="stagger-reveal flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.2em] text-brand-accent uppercase sm:gap-2 sm:text-xs lg:text-sm">
               <span>✦</span>
               <span>Design. Build. Inspire.</span>
             </div>

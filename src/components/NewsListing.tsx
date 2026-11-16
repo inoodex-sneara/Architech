@@ -49,7 +49,7 @@ export function NewsListing() {
         {/* Page Header */}
         <header className="mb-10 flex flex-col justify-between gap-6 border-b border-slate-200/80 pb-8 sm:mb-12 md:flex-row md:items-end">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#d6a184]/70 bg-[#fbf6f3] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8d4e34]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-accent/70 bg-[#fbf6f3] px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-brand-accent-strong">
               Journal &amp; Perspectives
             </span>
             <h1 className="mt-4 font-sans text-4xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-6xl">
@@ -87,7 +87,7 @@ export function NewsListing() {
               {/* Content */}
               <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-[#a86544] uppercase">
+                  <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-brand-accent-strong uppercase">
                     <span>{featuredNewsItem.category}</span>
                     <span>·</span>
                     <span className="text-slate-400">{featuredNewsItem.readTime}</span>
@@ -104,7 +104,7 @@ export function NewsListing() {
                   <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
                     {featuredNewsItem.date}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#a86544] group-hover:underline">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-accent-strong group-hover:underline">
                     <span>Read feature</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
@@ -185,7 +185,7 @@ export function NewsListing() {
 
                     {/* Content */}
                     <div className="mt-4 px-1">
-                      <div className="flex items-center gap-2 text-[11px] font-semibold tracking-wider text-[#a86544] uppercase">
+                      <div className="flex items-center gap-2 text-[11px] font-semibold tracking-wider text-brand-accent-strong uppercase">
                         <span>{item.category}</span>
                         <span>·</span>
                         <span className="text-slate-400">{item.readTime}</span>
@@ -199,7 +199,7 @@ export function NewsListing() {
                   {/* Card Footer */}
                   <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3 px-1 text-xs font-semibold text-slate-500">
                     <span className="tracking-wider uppercase">{item.date}</span>
-                    <span className="text-xs font-semibold text-[#a86544] group-hover:underline">
+                    <span className="text-xs font-semibold text-brand-accent-strong group-hover:underline">
                       Read article
                     </span>
                   </div>
@@ -222,7 +222,7 @@ export function NewsListing() {
             >
               <button
                 aria-label="Previous page"
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-[#bd7958] hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-brand-accent hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage((page) => page - 1)}
                 type="button"
@@ -248,7 +248,7 @@ export function NewsListing() {
               )}
               <button
                 aria-label="Next page"
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-[#bd7958] hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-brand-accent hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
                 disabled={currentPage === pageCount}
                 onClick={() => setCurrentPage((page) => page + 1)}
                 type="button"

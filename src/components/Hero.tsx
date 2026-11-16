@@ -164,7 +164,7 @@ export function Hero() {
                     type="button"
                   >
                     <div className="min-w-0 pr-2">
-                      <span className="block text-[10px] font-bold tracking-[0.14em] text-[#e4b396] uppercase sm:text-[11px]">
+                      <span className="block text-[10px] font-bold tracking-[0.14em] text-brand-accent uppercase sm:text-[11px]">
                         PROJECT STATUS
                       </span>
                       <span className="mt-0.5 block truncate text-sm font-bold text-white sm:text-[15px]">
@@ -172,8 +172,8 @@ export function Hero() {
                       </span>
                     </div>
                     <ChevronDown
-                      className={`h-4 w-4 shrink-0 text-[#e4b396] transition-transform duration-200 ${
-                        openDropdown === "status" ? "rotate-180 text-[#d6a184]" : ""
+                      className={`h-4 w-4 shrink-0 text-brand-accent transition-transform duration-200 ${
+                        openDropdown === "status" ? "rotate-180 text-brand-accent" : ""
                       }`}
                     />
                   </button>
@@ -187,7 +187,7 @@ export function Hero() {
                           : "top-full mt-3"
                       }`}
                     >
-                      <p className="px-3 py-1.5 text-[10px] font-bold tracking-wider text-[#e4b396] uppercase">
+                      <p className="px-3 py-1.5 text-[10px] font-bold tracking-wider text-brand-accent uppercase">
                         Select Status
                       </p>
                       <div className="max-h-60 space-y-1 overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
@@ -195,7 +195,7 @@ export function Hero() {
                           <button
                             className={`flex w-full cursor-pointer items-center justify-between rounded-xl px-3.5 py-2 text-xs font-semibold transition-colors sm:text-sm ${
                               selectedStatus === status
-                                ? "bg-[#d6a184] text-[#142936] font-bold"
+                                ? "bg-brand-accent text-[#142936] font-bold"
                                 : "text-white/90 hover:bg-white/10 hover:text-white"
                             }`}
                             key={status}
@@ -224,7 +224,7 @@ export function Hero() {
                     type="button"
                   >
                     <div className="min-w-0 pr-2">
-                      <span className="block text-[10px] font-bold tracking-[0.14em] text-[#e4b396] uppercase sm:text-[11px]">
+                      <span className="block text-[10px] font-bold tracking-[0.14em] text-brand-accent uppercase sm:text-[11px]">
                         PRIME LOCATION
                       </span>
                       <span className="mt-0.5 block truncate text-sm font-bold text-white sm:text-[15px]">
@@ -232,8 +232,8 @@ export function Hero() {
                       </span>
                     </div>
                     <ChevronDown
-                      className={`h-4 w-4 shrink-0 text-[#e4b396] transition-transform duration-200 ${
-                        openDropdown === "location" ? "rotate-180 text-[#d6a184]" : ""
+                      className={`h-4 w-4 shrink-0 text-brand-accent transition-transform duration-200 ${
+                        openDropdown === "location" ? "rotate-180 text-brand-accent" : ""
                       }`}
                     />
                   </button>
@@ -247,7 +247,7 @@ export function Hero() {
                           : "top-full mt-3"
                       }`}
                     >
-                      <p className="px-3 py-1.5 text-[10px] font-bold tracking-wider text-[#e4b396] uppercase">
+                      <p className="px-3 py-1.5 text-[10px] font-bold tracking-wider text-brand-accent uppercase">
                         Select Location
                       </p>
                       <div className="max-h-60 space-y-1 overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
@@ -255,7 +255,7 @@ export function Hero() {
                           <button
                             className={`flex w-full cursor-pointer items-center justify-between rounded-xl px-3.5 py-2 text-xs font-semibold transition-colors sm:text-sm ${
                               selectedLocation === loc
-                                ? "bg-[#d6a184] text-[#142936] font-bold"
+                                ? "bg-brand-accent text-[#142936] font-bold"
                                 : "text-white/90 hover:bg-white/10 hover:text-white"
                             }`}
                             key={loc}

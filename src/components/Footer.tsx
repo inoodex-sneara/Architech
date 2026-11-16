@@ -105,7 +105,7 @@ export function Footer() {
         />
         {/* Layered luxury lighting gradients */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c141a]/95 via-[#0a1117]/90 to-[#05090c]/98" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#bd7958]/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-accent-strong/10 via-transparent to-transparent" />
       </div>
 
       <div className="relative mx-auto max-w-[1640px] px-6 py-12 sm:px-10 sm:py-16 lg:px-16">
@@ -118,11 +118,11 @@ export function Footer() {
             <Link
               href="/"
               aria-label="Inoodex Home"
-              className="font-serif text-3xl font-bold tracking-tight text-white transition-colors hover:text-[#d6a184] sm:text-4xl"
+              className="font-serif text-3xl font-bold tracking-tight text-white transition-colors hover:text-brand-accent sm:text-4xl"
             >
               INOODEX
             </Link>
-            <p className="mt-1 text-xs font-semibold tracking-widest uppercase text-[#d6a184]">
+            <p className="mt-1 text-xs font-semibold tracking-widest uppercase text-brand-accent">
               ARCHITECTURE • DESIGN • DHAKA
             </p>
 
@@ -134,15 +134,15 @@ export function Footer() {
             {/* Direct Contact Details */}
             <div className="mt-6 space-y-3 text-xs text-slate-300">
               <div className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 shrink-0 text-[#d6a184] mt-0.5" />
+                <MapPin className="h-4 w-4 shrink-0 text-brand-accent mt-0.5" />
                 <span>House 42, Road 11, Block D, Banani, Dhaka 1213, Bangladesh</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 shrink-0 text-[#d6a184]" />
+                <Phone className="h-4 w-4 shrink-0 text-brand-accent" />
                 <span>+880 1711-000000 / +880 2-9880000</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-[#d6a184]" />
+                <Mail className="h-4 w-4 shrink-0 text-brand-accent" />
                 <a
                   href="mailto:contact@inoodex.com"
                   className="hover:text-white transition-colors underline-offset-4 hover:underline"
@@ -163,7 +163,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="inline-block transition-colors hover:text-[#d6a184] hover:translate-x-1 duration-200"
+                    className="inline-block transition-colors hover:text-brand-accent hover:translate-x-1 duration-200"
                   >
                     {item.label}
                   </Link>
@@ -189,18 +189,18 @@ export function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-slate-500 backdrop-blur-sm transition-colors focus:border-[#d6a184] focus:outline-hidden focus:ring-1 focus:ring-[#d6a184]"
+                  className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-slate-500 backdrop-blur-sm transition-colors focus:border-brand-accent focus:outline-hidden focus:ring-1 focus:ring-brand-accent"
                 />
                 <button
                   type="submit"
                   aria-label="Subscribe to newsletter"
-                  className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-[#bd7958] text-white shadow-md transition-colors hover:bg-[#a86544]"
+                  className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-brand-accent text-white shadow-md transition-colors hover:bg-brand-accent"
                 >
                   <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </div>
               {isSubscribed && (
-                <div className="mt-2 flex items-center gap-1.5 text-xs text-[#d6a184] review-card-enter">
+                <div className="mt-2 flex items-center gap-1.5 text-xs text-brand-accent review-card-enter">
                   <Check className="h-3.5 w-3.5" />
                   <span>Thank you for subscribing!</span>
                 </div>
@@ -222,7 +222,7 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-all duration-200 hover:border-[#d6a184] hover:bg-[#bd7958] hover:text-white hover:scale-105"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-all duration-200 hover:border-brand-accent hover:bg-brand-accent hover:text-white hover:scale-105"
                     >
                       <Icon className="h-4 w-4" />
                     </a>
@@ -258,7 +258,7 @@ export function Footer() {
                 type="button"
                 onClick={scrollToTop}
                 aria-label="Scroll back to top"
-                className="group flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-[#d6a184] hover:text-[#d6a184]"
+                className="group flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-slate-300 transition-colors hover:border-brand-accent hover:text-brand-accent"
               >
                 <span>Back to Top</span>
                 <ArrowUp className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />

@@ -67,8 +67,8 @@ export function ProjectsListing() {
       <div className="mx-auto max-w-[1640px] px-6 sm:px-10 lg:px-16">
         <header className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 md:flex-row md:items-end">
           <div className="max-w-4xl">
-            <p className="flex items-center gap-2 text-[10px] font-bold tracking-[0.22em] text-[#a86544] sm:text-xs">
-              <span aria-hidden="true" className="size-2 rounded-full bg-[#d6a184]" />
+            <p className="flex items-center gap-2 text-[10px] font-bold tracking-[0.22em] text-brand-accent-strong sm:text-xs">
+              <span aria-hidden="true" className="size-2 rounded-full bg-brand-accent" />
               BANGLADESH / PROJECT CONCEPTS
             </p>
             <h1 className="mt-4 font-sans text-4xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#172f3d] sm:text-5xl lg:text-[64px]">
@@ -108,7 +108,7 @@ export function ProjectsListing() {
             </div>
             <div className="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10 xl:p-12">
               <div>
-                <p className="text-[10px] font-bold tracking-[0.2em] text-[#e4b396] sm:text-xs">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-brand-accent sm:text-xs">
                   FEATURED CONCEPT <span className="mx-1.5 text-white/35">/</span>{" "}
                   {featuredProject.type}
                 </p>
@@ -116,7 +116,7 @@ export function ProjectsListing() {
                   {featuredProject.title}
                 </h2>
                 <p className="mt-4 flex items-center gap-2 text-sm text-white/70 sm:text-base">
-                  <MapPin aria-hidden="true" className="size-4 text-[#e4b396]" />
+                  <MapPin aria-hidden="true" className="size-4 text-brand-accent" />
                   {featuredProject.location}
                 </p>
               </div>
@@ -127,7 +127,7 @@ export function ProjectsListing() {
                   community life together.
                 </p>
                 <p className="mt-6 text-[10px] font-semibold tracking-[0.18em] text-white/45">
-                  INOODEX <span className="mx-2 text-[#e4b396]">·</span> BANGLADESH
+                  INOODEX <span className="mx-2 text-brand-accent">·</span> BANGLADESH
                 </p>
               </div>
             </div>
@@ -169,7 +169,7 @@ export function ProjectsListing() {
                   className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors sm:text-sm ${
                     activeType === type
                       ? "bg-[#30495b] text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-[#f4e7df] hover:text-[#8d4e34]"
+                      : "bg-slate-100 text-slate-600 hover:bg-[#f4e7df] hover:text-brand-accent-strong"
                   }`}
                   key={type}
                   onClick={() => selectType(type)}
@@ -180,7 +180,7 @@ export function ProjectsListing() {
               ))}
 
               {locationParam && (
-                <div className="flex items-center gap-1.5 rounded-full border border-[#d6a184]/60 bg-[#fbf6f3] px-3 py-1 text-xs font-semibold text-[#8d4e34]">
+                <div className="flex items-center gap-1.5 rounded-full border border-brand-accent/60 bg-[#fbf6f3] px-3 py-1 text-xs font-semibold text-brand-accent-strong">
                   <span>Location: {locationParam}</span>
                   <button
                     aria-label="Clear location filter"
@@ -204,7 +204,7 @@ export function ProjectsListing() {
           >
             {visibleProjects.map((project, index) => (
               <article
-                className="group min-w-0 overflow-hidden rounded-xl border border-slate-200/80 bg-white transition duration-300 hover:-translate-y-1 hover:border-[#d6a184]/70 hover:shadow-[0_16px_40px_rgba(27,45,57,0.12)]"
+                className="group min-w-0 overflow-hidden rounded-xl border border-slate-200/80 bg-white transition duration-300 hover:-translate-y-1 hover:border-brand-accent/70 hover:shadow-[0_16px_40px_rgba(27,45,57,0.12)]"
                 key={project.title}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
@@ -245,7 +245,7 @@ export function ProjectsListing() {
             >
               <button
                 aria-label="Previous page"
-                className="px-2 py-1 text-sm text-slate-600 hover:text-[#bd7958] disabled:opacity-40"
+                className="px-2 py-1 text-sm text-slate-600 hover:text-brand-accent-strong disabled:opacity-40"
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage((page) => page - 1)}
                 type="button"
@@ -259,7 +259,7 @@ export function ProjectsListing() {
                     className={`min-w-8 px-2 py-1 text-sm ${
                       currentPage === page
                         ? "font-semibold text-slate-900 underline underline-offset-4"
-                        : "text-slate-600 hover:text-[#bd7958]"
+                        : "text-slate-600 hover:text-brand-accent-strong"
                     }`}
                     key={page}
                     onClick={() => setCurrentPage(page)}
@@ -271,7 +271,7 @@ export function ProjectsListing() {
               )}
               <button
                 aria-label="Next page"
-                className="px-2 py-1 text-sm text-slate-600 hover:text-[#bd7958] disabled:opacity-40"
+                className="px-2 py-1 text-sm text-slate-600 hover:text-brand-accent-strong disabled:opacity-40"
                 disabled={currentPage === pageCount}
                 onClick={() => setCurrentPage((page) => page + 1)}
                 type="button"

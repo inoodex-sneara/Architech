@@ -90,15 +90,15 @@ export default async function ExpertisePage({ params }: ExpertisePageProps) {
             <div className="flex flex-col justify-between border-b border-stone-200/80 pb-6 md:border-b-0 md:border-r md:pb-0 md:pr-8">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-[#bd7958]" />
+                  <span className="h-2 w-2 rounded-full bg-brand-accent" />
                   <p
-                    className="text-xs font-bold tracking-[0.22em] text-[#a86544] uppercase"
+                    className="text-xs font-bold tracking-[0.22em] text-brand-accent-strong uppercase"
                     id="approach-heading"
                   >
                     OUR APPROACH
                   </p>
                 </div>
-                <span aria-hidden="true" className="mt-5 block h-px w-12 bg-[#bd7958]" />
+                <span aria-hidden="true" className="mt-5 block h-px w-12 bg-brand-accent" />
               </div>
               <div className="mt-6 md:mt-12">
                 <p className="text-[10px] font-semibold tracking-[0.18em] text-slate-400 uppercase">
@@ -132,11 +132,11 @@ export default async function ExpertisePage({ params }: ExpertisePageProps) {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
                   {area.sections.map((section) => (
                     <div
-                      className="group/pillar rounded-xl border border-stone-200/80 bg-white/80 p-3.5 transition-all duration-300 hover:border-[#bd7958]/50 hover:bg-white hover:shadow-sm sm:p-4"
+                      className="group/pillar rounded-xl border border-stone-200/80 bg-white/80 p-3.5 transition-all duration-300 hover:border-brand-accent/50 hover:bg-white hover:shadow-sm sm:p-4"
                       key={section.title}
                     >
-                      <span aria-hidden="true" className="mb-3 block h-px w-7 bg-[#bd7958] transition-all duration-300 group-hover/pillar:w-11" />
-                      <p className="text-sm font-bold text-slate-900 transition-colors group-hover/pillar:text-[#a86544]">
+                      <span aria-hidden="true" className="mb-3 block h-px w-7 bg-brand-accent transition-all duration-300 group-hover/pillar:w-11" />
+                      <p className="text-sm font-bold text-slate-900 transition-colors group-hover/pillar:text-brand-accent-strong">
                         {section.title}
                       </p>
                       <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
@@ -169,7 +169,7 @@ export default async function ExpertisePage({ params }: ExpertisePageProps) {
                 >
                   {section.title}
                 </h2>
-                <span aria-hidden="true" className="h-[2px] w-12 bg-[#bd7958]" />
+                <span aria-hidden="true" className="h-[2px] w-12 bg-brand-accent" />
                 <p className="max-w-2xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7 lg:text-[15px] lg:leading-[1.75]">
                   {section.description}
                 </p>
@@ -217,11 +217,11 @@ export default async function ExpertisePage({ params }: ExpertisePageProps) {
               {area.commitment.description}
             </p>
           </div>
-          <div className="flex min-h-[200px] flex-col justify-center border-t border-[#d6a184]/50 pt-8 md:min-h-[280px] md:border-l md:border-t-0 md:pt-0 md:pl-10 lg:pl-12">
+          <div className="flex min-h-[200px] flex-col justify-center border-t border-brand-accent/50 pt-8 md:min-h-[280px] md:border-l md:border-t-0 md:pt-0 md:pl-10 lg:pl-12">
             <p className="max-w-[640px] text-3xl font-semibold leading-[1.06] tracking-[-0.035em] sm:text-5xl lg:text-[44px] xl:text-5xl">
               {area.commitment.graphicTitle}
             </p>
-            <p className="mt-6 text-xs font-semibold tracking-[0.18em] text-[#e4b396] sm:mt-7 sm:text-sm">
+            <p className="mt-6 text-xs font-semibold tracking-[0.18em] text-brand-accent sm:mt-7 sm:text-sm">
               {area.commitment.graphicYear}
             </p>
           </div>

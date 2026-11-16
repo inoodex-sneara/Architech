@@ -39,7 +39,7 @@ export function CareerInterestForm() {
     <form className="space-y-5" onSubmit={handleSubmit}>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block text-sm font-medium text-slate-700">
-          Your name <span aria-hidden="true" className="text-[#bd7958]">*</span>
+          Your name <span aria-hidden="true" className="text-brand-accent-strong">*</span>
           <input
             autoComplete="name"
             className={fieldClassName}
@@ -50,7 +50,7 @@ export function CareerInterestForm() {
         </label>
         <label className="block text-sm font-medium text-slate-700">
           Email address{" "}
-          <span aria-hidden="true" className="text-[#bd7958]">
+          <span aria-hidden="true" className="text-brand-accent-strong">
             *
           </span>
           <input
@@ -67,7 +67,7 @@ export function CareerInterestForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block text-sm font-medium text-slate-700">
           Area of interest{" "}
-          <span aria-hidden="true" className="text-[#bd7958]">
+          <span aria-hidden="true" className="text-brand-accent-strong">
             *
           </span>
           <select
@@ -98,7 +98,7 @@ export function CareerInterestForm() {
 
       <label className="block text-sm font-medium text-slate-700">
         A little about you{" "}
-        <span aria-hidden="true" className="text-[#bd7958]">
+        <span aria-hidden="true" className="text-brand-accent-strong">
           *
         </span>
         <textarea

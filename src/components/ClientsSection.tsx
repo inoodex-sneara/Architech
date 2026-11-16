@@ -78,7 +78,7 @@ export function ClientsSection() {
       <div className="border-b border-slate-200/60 bg-white">
         <div className="mx-auto grid max-w-[1640px] gap-3 px-5 py-8 sm:gap-5 sm:px-10 sm:py-12 md:grid-cols-[1fr_1fr] md:items-center md:gap-10 lg:px-16 lg:py-14">
           <div>
-            <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-[#a86544] uppercase sm:text-sm">
+            <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-brand-accent-strong uppercase sm:text-sm">
               TRUSTED PARTNERS
             </p>
             <h2
@@ -99,7 +99,7 @@ export function ClientsSection() {
         <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3.5 md:grid-cols-4 lg:grid-cols-5">
           {clients.map((client) => (
             <div
-              className="group flex h-[68px] items-center justify-center rounded-xl border border-slate-200/80 bg-white px-3 py-2 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-[#bd7958]/50 hover:shadow-md sm:h-[82px] sm:px-4 sm:py-3 lg:h-[90px]"
+              className="group flex h-[68px] items-center justify-center rounded-xl border border-slate-200/80 bg-white px-3 py-2 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-accent/50 hover:shadow-md sm:h-[82px] sm:px-4 sm:py-3 lg:h-[90px]"
               key={client.name}
             >
               <div className="relative flex h-8 w-full max-w-[110px] items-center justify-center sm:h-10 sm:max-w-[130px] lg:h-11 lg:max-w-[140px]">

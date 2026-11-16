@@ -95,14 +95,14 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
         {/* Navigation & Category Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
-            className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-slate-500 transition-colors hover:text-[#bd7958]"
+            className="group inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-slate-500 transition-colors hover:text-brand-accent-strong"
             href="/news"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>Back to all news</span>
           </Link>
 
-          <span className="text-xs font-semibold tracking-[0.18em] text-[#a86544] uppercase">
+          <span className="text-xs font-semibold tracking-[0.18em] text-brand-accent-strong uppercase">
             {item.category}
           </span>
         </div>
@@ -151,7 +151,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             <ul className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-slate-600 text-sm">
               {item.tags.map((tag, idx) => (
                 <li key={tag} className="flex items-center gap-4">
-                  <span className="underline underline-offset-4 hover:text-[#a86544] transition-colors cursor-default">
+                  <span className="underline underline-offset-4 hover:text-brand-accent-strong transition-colors cursor-default">
                     {tag}
                   </span>
                   {idx < (item.tags?.length ?? 0) - 1 && (
@@ -213,7 +213,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
               href={`/news/${previousItem.slug}`}
             >
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-slate-400 uppercase transition-colors group-hover:text-[#bd7958]">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-slate-400 uppercase transition-colors group-hover:text-brand-accent-strong">
                   <ArrowLeft className="h-3.5 w-3.5" />
                   <span>Previous dispatch</span>
                 </span>
@@ -231,7 +231,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
               href={`/news/${nextItem.slug}`}
             >
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-slate-400 uppercase transition-colors group-hover:text-[#bd7958] sm:justify-end">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-slate-400 uppercase transition-colors group-hover:text-brand-accent-strong sm:justify-end">
                   <span>Next dispatch</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
@@ -257,8 +257,8 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             <div className="mb-8 flex items-end justify-between border-b border-slate-200 pb-5">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-[#bd7958]" />
-                  <p className="text-xs font-bold tracking-[0.2em] text-[#a86544] uppercase">
+                  <span className="h-2 w-2 rounded-full bg-brand-accent" />
+                  <p className="text-xs font-bold tracking-[0.2em] text-brand-accent-strong uppercase">
                     JOURNAL &amp; PERSPECTIVES
                   </p>
                 </div>
@@ -270,7 +270,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
                 </h2>
               </div>
               <Link
-                className="group inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#bd7958] transition-colors"
+                className="group inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-brand-accent-strong transition-colors"
                 href="/news"
               >
                 <span>View all news</span>
@@ -298,7 +298,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
                         {related.category}
                       </div>
                     </div>
-                    <p className="mt-4 text-[11px] font-semibold tracking-[0.16em] text-[#a86544] uppercase">
+                    <p className="mt-4 text-[11px] font-semibold tracking-[0.16em] text-brand-accent-strong uppercase">
                       {related.category}
                     </p>
                     <h3 className="mt-1 font-serif text-lg leading-snug text-slate-900 group-hover:underline">

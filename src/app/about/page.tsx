@@ -51,11 +51,11 @@ function RotatingContactBadge({
           fill="none"
           id="badgeCirclePath"
         />
-        <text className="fill-[#bd7958] text-[8px] font-bold tracking-[0.26em] uppercase transition-colors group-hover:fill-[#a96343]">
+        <text className="fill-brand-accent text-[8px] font-bold tracking-[0.26em] uppercase transition-colors group-hover:fill-brand-accent">
           <textPath href="#bd7958geCirclePath">{text}</textPath>
         </text>
       </svg>
-      <div className="absolute flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-[#bd7958] text-white shadow-md transition-transform duration-300 group-hover:scale-110">
+      <div className="absolute flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-brand-accent text-white shadow-md transition-transform duration-300 group-hover:scale-110">
         <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5" />
       </div>
     </Link>
@@ -65,8 +65,8 @@ function RotatingContactBadge({
 // Custom Kicker pill
 function SectionKicker({ children }: { children: React.ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#bd7958]">
-      <span className="text-[#bd7958]">✳</span>
+    <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-brand-accent-strong">
+      <span className="text-brand-accent-strong">✳</span>
       <span>{children}</span>
     </div>
   );
@@ -114,7 +114,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-[#bd7958] selection:text-white">
+    <main className="min-h-screen bg-white text-zinc-900 selection:bg-brand-accent selection:text-white">
       {/* =========================================================================
           SECTION 1: HERO BANNER
       ========================================================================= */}
@@ -139,7 +139,7 @@ export default function AboutPage() {
             >
               Home
             </Link>
-            <span className="text-[#bd7958]">/</span>
+            <span className="text-brand-accent-strong">/</span>
             <span className="text-white">About Us</span>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
             (item, idx) => (
               <span key={idx} className="flex items-center gap-8">
                 <span>{item}</span>
-                <span className="text-[#e4b396] text-base">✳</span>
+                <span className="text-brand-accent text-base">✳</span>
               </span>
             ),
           )}
@@ -174,7 +174,7 @@ export default function AboutPage() {
                 {Array.from({ length: 36 }).map((_, i) => (
                   <span
                     key={i}
-                    className="h-1.5 w-1.5 rounded-full bg-[#bd7958]"
+                    className="h-1.5 w-1.5 rounded-full bg-brand-accent"
                   />
                 ))}
               </div>
@@ -220,13 +220,13 @@ export default function AboutPage() {
               {/* Checklist */}
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium text-zinc-800">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#bd7958]/15 text-[#bd7958]">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-accent/15 text-brand-accent-strong">
                     <Check className="h-3 w-3 stroke-[3]" />
                   </div>
                   <span>We ensuring every project reflects both beauty.</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#bd7958]/15 text-[#bd7958]">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-accent/15 text-brand-accent-strong">
                     <Check className="h-3 w-3 stroke-[3]" />
                   </div>
                   <span>We create spaces that are stylish, and efficient.</span>
@@ -241,7 +241,7 @@ export default function AboutPage() {
                     <h3 className="font-sans text-lg font-bold text-zinc-900">
                       Our Mission
                     </h3>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#bd7958]/10 text-[#bd7958]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent-strong">
                       <Layers className="h-5 w-5" />
                     </div>
                   </div>
@@ -260,7 +260,7 @@ export default function AboutPage() {
                     <h3 className="font-sans text-lg font-bold text-zinc-900">
                       Our Vision
                     </h3>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#bd7958]/10 text-[#bd7958]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent-strong">
                       <Compass className="h-5 w-5" />
                     </div>
                   </div>
@@ -307,7 +307,7 @@ export default function AboutPage() {
             {/* Left 2 Pillars */}
             <div className="space-y-12 lg:col-span-4">
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Compass className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-zinc-900">
@@ -318,13 +318,13 @@ export default function AboutPage() {
                   visually striking & timeless.
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs font-medium text-zinc-700">
-                  <Check className="h-3.5 w-3.5 text-[#bd7958]" />
+                  <Check className="h-3.5 w-3.5 text-brand-accent-strong" />
                   <span>Custom building solutions combining aesthetics</span>
                 </div>
               </div>
 
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Layers className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-zinc-900">
@@ -335,7 +335,7 @@ export default function AboutPage() {
                   experience your space before.
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs font-medium text-zinc-700">
-                  <Check className="h-3.5 w-3.5 text-[#bd7958]" />
+                  <Check className="h-3.5 w-3.5 text-brand-accent-strong" />
                   <span>Realistic 3D models for precise design clarity</span>
                 </div>
               </div>
@@ -364,7 +364,7 @@ export default function AboutPage() {
             {/* Right 2 Pillars */}
             <div className="space-y-12 lg:col-span-4">
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Sparkles className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-zinc-900">
@@ -375,13 +375,13 @@ export default function AboutPage() {
                   are personalized, and inspiring.
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs font-medium text-zinc-700">
-                  <Check className="h-3.5 w-3.5 text-[#bd7958]" />
+                  <Check className="h-3.5 w-3.5 text-brand-accent-strong" />
                   <span>Personalized interiors blending elegance & style</span>
                 </div>
               </div>
 
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-zinc-900">
@@ -392,7 +392,7 @@ export default function AboutPage() {
                   coordination.
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs font-medium text-zinc-700">
-                  <Check className="h-3.5 w-3.5 text-[#bd7958]" />
+                  <Check className="h-3.5 w-3.5 text-brand-accent-strong" />
                   <span>Seamless coordination from concept completion</span>
                 </div>
               </div>
@@ -421,7 +421,7 @@ export default function AboutPage() {
 
               {/* Feature highlight */}
               <div className="mt-7 flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#bd7958]/30 bg-white text-[#bd7958] shadow-sm">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-accent/30 bg-white text-brand-accent-strong shadow-sm">
                   <Clapperboard className="h-6 w-6" />
                 </div>
                 <div>
@@ -445,7 +445,7 @@ export default function AboutPage() {
                   </div>
                   <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-zinc-200">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#bd7958] to-[#d6a184]"
+                      className="h-full rounded-full bg-gradient-to-r from-brand-accent-strong to-brand-accent"
                       style={{ width: "54%" }}
                     />
                   </div>
@@ -458,7 +458,7 @@ export default function AboutPage() {
                   </div>
                   <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-zinc-200">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#bd7958] to-[#d6a184]"
+                      className="h-full rounded-full bg-gradient-to-r from-brand-accent-strong to-brand-accent"
                       style={{ width: "59%" }}
                     />
                   </div>
@@ -507,7 +507,7 @@ export default function AboutPage() {
               </div>
 
               {/* Golden Stat Card */}
-              <div className="absolute -bottom-6 right-4 sm:right-8 z-20 rounded-2xl bg-gradient-to-br from-[#a96343] to-[#a96343] p-6 sm:p-7 text-white shadow-xl">
+              <div className="absolute -bottom-6 right-4 sm:right-8 z-20 rounded-2xl bg-gradient-to-br from-brand-accent-strong to-brand-accent p-6 sm:p-7 text-white shadow-xl">
                 <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
                   5,000+
                 </p>
@@ -586,8 +586,8 @@ export default function AboutPage() {
                       </textPath>
                     </text>
                   </svg>
-                  <div className="absolute flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white text-[#bd7958] shadow-lg">
-                    <Play className="h-4 w-4 sm:h-5 sm:w-5 fill-[#bd7958] ml-0.5" />
+                  <div className="absolute flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white text-brand-accent-strong shadow-lg">
+                    <Play className="h-4 w-4 sm:h-5 sm:w-5 fill-brand-accent ml-0.5" />
                   </div>
                 </div>
               </div>
@@ -596,7 +596,7 @@ export default function AboutPage() {
             {/* Card 2: Cutting Edge Technology */}
             <div className="flex flex-col justify-between rounded-3xl border border-zinc-200/90 bg-[#f5f4f1] p-7 sm:p-8 shadow-sm hover:shadow-md transition-shadow lg:col-span-3">
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Compass className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-lg font-bold text-zinc-900">
@@ -610,7 +610,7 @@ export default function AboutPage() {
 
               <div className="mt-8 border-t border-zinc-200 pt-4">
                 <div className="flex items-center gap-2 text-xs font-semibold text-zinc-800">
-                  <Check className="h-3.5 w-3.5 text-[#bd7958]" />
+                  <Check className="h-3.5 w-3.5 text-brand-accent-strong" />
                   <span>3D model for precise planning</span>
                 </div>
               </div>
@@ -619,7 +619,7 @@ export default function AboutPage() {
             {/* Card 3: Timely Project Delivery */}
             <div className="flex flex-col justify-between rounded-3xl border border-zinc-200/90 bg-[#f5f4f1] p-7 sm:p-8 shadow-sm hover:shadow-md transition-shadow lg:col-span-3">
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Activity className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-lg font-bold text-zinc-900">
@@ -632,7 +632,7 @@ export default function AboutPage() {
 
               <div className="mt-8 border-t border-zinc-200 pt-4">
                 <div className="flex items-center gap-2 text-xs font-semibold text-zinc-800">
-                  <Check className="h-3.5 w-3.5 text-[#bd7958]" />
+                  <Check className="h-3.5 w-3.5 text-brand-accent-strong" />
                   <span>Premium 3D visuals and mood</span>
                 </div>
               </div>
@@ -649,9 +649,9 @@ export default function AboutPage() {
             ].map((tag, i) => (
               <span
                 key={i}
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-[#f5f4f1] px-5 py-2.5 shadow-2xs hover:border-[#bd7958]/40 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-[#f5f4f1] px-5 py-2.5 shadow-2xs hover:border-brand-accent/40 transition-colors"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-[#bd7958]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-accent" />
                 <span>{tag}</span>
               </span>
             ))}
@@ -695,7 +695,7 @@ export default function AboutPage() {
             {/* Step 1 */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white p-7 shadow-sm hover:shadow-md transition-shadow">
               <div className="relative z-10">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Compass className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-zinc-900">
@@ -707,11 +707,11 @@ export default function AboutPage() {
                 </p>
                 <ul className="mt-6 space-y-2 text-xs font-semibold text-zinc-800">
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Capturing Your Unique Vision</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Assessing Space</span>
                   </li>
                 </ul>
@@ -721,7 +721,7 @@ export default function AboutPage() {
             {/* Step 2 */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white p-7 shadow-sm hover:shadow-md transition-shadow">
               <div className="relative z-10">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Layers className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-zinc-900">
@@ -732,11 +732,11 @@ export default function AboutPage() {
                 </p>
                 <ul className="mt-6 space-y-2 text-xs font-semibold text-zinc-800">
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Visualizing the Final Space in 3D</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Integrating Functionality</span>
                   </li>
                 </ul>
@@ -746,7 +746,7 @@ export default function AboutPage() {
             {/* Step 3 */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white p-7 shadow-sm hover:shadow-md transition-shadow">
               <div className="relative z-10">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <Sparkles className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-zinc-900">
@@ -757,11 +757,11 @@ export default function AboutPage() {
                 </p>
                 <ul className="mt-6 space-y-2 text-xs font-semibold text-zinc-800">
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Ensuring Functional Excellence</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Managing Timelines</span>
                   </li>
                 </ul>
@@ -771,7 +771,7 @@ export default function AboutPage() {
             {/* Step 4 */}
             <div className="relative overflow-hidden rounded-3xl border border-zinc-200/80 bg-white p-7 shadow-sm hover:shadow-md transition-shadow">
               <div className="relative z-10">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#bd7958]/10 text-[#bd7958]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-accent/10 text-brand-accent-strong">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-zinc-900">
@@ -782,11 +782,11 @@ export default function AboutPage() {
                 </p>
                 <ul className="mt-6 space-y-2 text-xs font-semibold text-zinc-800">
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Client Walkthrough & Feedback</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <span className="text-[#bd7958]">▪</span>
+                    <span className="text-brand-accent-strong">▪</span>
                     <span>Presenting the Space</span>
                   </li>
                 </ul>
@@ -812,7 +812,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             {/* Left Column */}
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#bd7958]">
+              <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-brand-accent-strong">
                 <span>✳</span>
                 <span>Contact Us Today!</span>
               </div>
@@ -826,7 +826,7 @@ export default function AboutPage() {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#bd7958] px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-xl hover:bg-[#a96343] transition-colors"
+                  className="group inline-flex items-center gap-2 rounded-full bg-brand-accent px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-xl hover:bg-brand-accent transition-colors"
                 >
                   <span>Contact Us</span>
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -860,7 +860,7 @@ export default function AboutPage() {
                       />
                     </div>
                   ))}
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-[#bd7958] text-xs font-bold text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-brand-accent text-xs font-bold text-white">
                     15+
                   </div>
                 </div>
@@ -875,7 +875,7 @@ export default function AboutPage() {
           {/* Bottom 3 Features Bar */}
           <div className="mt-16 grid grid-cols-1 gap-6 border-t border-zinc-200 pt-8 sm:grid-cols-3">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#bd7958]/10 text-[#bd7958]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent-strong">
                 <Headphones className="h-5 w-5" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-zinc-700">
@@ -884,7 +884,7 @@ export default function AboutPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#bd7958]/10 text-[#bd7958]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent-strong">
                 <Sparkles className="h-5 w-5" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-zinc-700">
@@ -893,7 +893,7 @@ export default function AboutPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#bd7958]/10 text-[#bd7958]">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-accent/10 text-brand-accent-strong">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-zinc-700">
@@ -962,7 +962,7 @@ export default function AboutPage() {
                   <h3 className="text-lg font-bold tracking-wide">
                     {member.name}
                   </h3>
-                  <p className="text-xs font-medium text-[#e4b396] mt-0.5">
+                  <p className="text-xs font-medium text-brand-accent mt-0.5">
                     {member.role}
                   </p>
                 </div>
@@ -972,7 +972,7 @@ export default function AboutPage() {
 
           {/* Footnote */}
           <div className="mt-10 flex items-center justify-center gap-3 text-xs sm:text-sm text-zinc-600">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#bd7958]/10 text-[#bd7958]">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-accent/10 text-brand-accent-strong">
               <Phone className="h-4 w-4" />
             </div>
             <p>
@@ -980,7 +980,7 @@ export default function AboutPage() {
               beautifully –{" "}
               <Link
                 href="/people"
-                className="font-bold text-zinc-900 underline hover:text-[#bd7958]"
+                className="font-bold text-zinc-900 underline hover:text-brand-accent-strong"
               >
                 Meet Our Team
               </Link>
@@ -1007,7 +1007,7 @@ export default function AboutPage() {
               <Link
                 href="/contact"
                 aria-label="Contact us about your design questions"
-                className="group mt-8 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#bd7958] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#a96343] hover:shadow-lg"
+                className="group mt-8 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-brand-accent hover:shadow-lg"
               >
                 <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
@@ -1034,7 +1034,7 @@ export default function AboutPage() {
                       <span className="flex min-w-0 items-start gap-3 sm:gap-4">
                         <span
                           className={`mt-0.5 text-xs font-bold tracking-wider ${
-                            isOpen ? "text-[#bd7958]" : "text-zinc-400"
+                            isOpen ? "text-brand-accent-strong" : "text-zinc-400"
                           }`}
                         >
                           {String(index + 1).padStart(2, "0")}
@@ -1046,7 +1046,7 @@ export default function AboutPage() {
                       <span
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors ${
                           isOpen
-                            ? "bg-[#bd7958] text-white"
+                            ? "bg-brand-accent text-white"
                             : "bg-zinc-100 text-zinc-600"
                         }`}
                       >

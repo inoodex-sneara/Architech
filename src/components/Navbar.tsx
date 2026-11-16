@@ -3,14 +3,15 @@
 import { Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-
-
-const menuItems = [
+const navLinks = [
+  { label: "HOME", href: "/" },
   { label: "PROJECTS", href: "/projects" },
+  { label: "SERVICES", href: "/#services" },
   { label: "ABOUT", href: "/about" },
-  { label: "NEWS", href: "news" },
+  { label: "NEWS", href: "/news" },
   { label: "CAREERS", href: "/careers" },
   { label: "CONTACT", href: "/contact" },
 ];
@@ -58,6 +59,7 @@ const searchResults = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -76,6 +78,8 @@ export function Navbar() {
       )
     : searchResults;
 
+  // Don't lock body overflow: hidden because on touch devices and Chrome mobile
+  // emulation it cancels touchmove events and prevents scrolling fixed overlays.
   useEffect(() => {
     if (!isSearchOpen) return;
 
@@ -92,24 +96,66 @@ export function Navbar() {
   }, [isSearchOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white">
-      <div className="flex h-[68px] items-center justify-between px-4 sm:h-[82px] sm:px-8">
+    <>
+      <header className="sticky top-0 z-50 w-full border-b border-zinc-200/90 bg-white/95 backdrop-blur-md">
+        <div className="mx-auto flex h-[68px] sm:h-[82px] max-w-[1520px] items-center justify-between px-4 sm:px-8 lg:px-12">
+        {/* Brand Logo */}
         <Link
           aria-label="Inoodex home"
-          className="shrink-0 font-sans text-2xl font-semibold leading-none tracking-[-0.06em] text-slate-900 sm:text-[40px]"
+          className="shrink-0 font-sans text-2xl font-semibold leading-none tracking-[-0.06em] text-slate-900 sm:text-[34px] lg:text-[38px] transition-colors hover:text-[#b5883e]"
           href="/"
         >
           INOODEX
         </Link>
 
-        <div className="flex items-center gap-2 text-slate-800 sm:gap-3.5">
+        {/* =====================================================================
+            DESKTOP NAVIGATION: MENU BAR IN A ROW
+        ===================================================================== */}
+        <nav
+          aria-label="Desktop Navigation"
+          className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-9"
+        >
+          {navLinks.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : item.href.startsWith("/#")
+                ? false
+                : pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`group relative py-1.5 text-xs xl:text-[13px] font-semibold tracking-[0.16em] uppercase transition-colors duration-200 ${
+                  isActive
+                    ? "text-[#b5883e] font-bold"
+                    : "text-slate-700 hover:text-[#b5883e]"
+                }`}
+              >
+                {item.label}
+                {/* Active & Hover Underline Accent */}
+                <span
+                  className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "bg-[#b5883e] opacity-100 scale-x-100"
+                      : "bg-[#b5883e] opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+                  }`}
+                />
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Right Side Actions: Search, CTA, Mobile Menu */}
+        <div className="flex items-center gap-2 text-slate-800 sm:gap-3">
+          {/* Search Button */}
           <button
             aria-controls="site-search"
             aria-expanded={isSearchOpen}
-            className={`flex h-10 items-center justify-center gap-2 border px-2.5 text-xs font-semibold uppercase tracking-wider transition-colors sm:h-11 sm:min-w-44 sm:px-5 sm:text-sm ${
+            className={`flex h-10 items-center justify-center gap-2 border px-3 text-xs font-semibold uppercase tracking-wider transition-colors sm:h-10 sm:px-3.5 ${
               isSearchOpen
                 ? "border-slate-900 bg-slate-900 text-white"
-                : "border-slate-300 bg-white text-slate-800 hover:border-[#d6a184] hover:bg-[#fbf5f0]"
+                : "border-slate-300/90 bg-white text-slate-700 hover:border-[#b5883e] hover:text-[#b5883e]"
             }`}
             onClick={() => {
               setIsSearchOpen((open) => !open);
@@ -117,13 +163,23 @@ export function Navbar() {
             }}
             type="button"
           >
-            <span className="hidden sm:inline">Search</span>
-            <Search aria-hidden="true" className="size-4 sm:size-[17px]" strokeWidth={2} />
+            <Search aria-hidden="true" className="size-4" strokeWidth={2} />
+            <span className="hidden xl:inline">Search</span>
           </button>
+
+          {/* Quotation CTA Button */}
+          <Link
+            href="/contact"
+            className="hidden sm:inline-flex h-10 items-center justify-center rounded-xs bg-[#b5883e] px-4 sm:px-5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-[#9d7432] shadow-2xs hover:shadow-xs"
+          >
+            Get Quotation
+          </Link>
+
+          {/* Mobile / Tablet Menu Button (lg:hidden) */}
           <button
             aria-controls="site-menu"
             aria-expanded={isMenuOpen}
-            className="flex h-10 items-center justify-center gap-1.5 border border-[#d6a184] bg-[#d6a184] px-3.5 text-xs font-semibold uppercase tracking-wider text-[#142936] transition-colors hover:bg-[#e3b89e] sm:h-11 sm:px-5 sm:text-sm"
+            className="flex lg:hidden h-10 items-center justify-center gap-1.5 border border-slate-300/90 bg-white px-3 text-xs font-semibold uppercase tracking-wider text-slate-800 transition-colors hover:border-[#b5883e] hover:text-[#b5883e]"
             onClick={() => {
               setIsMenuOpen((open) => !open);
               setIsSearchOpen(false);
@@ -131,100 +187,100 @@ export function Navbar() {
             }}
             type="button"
           >
-            <span>{isMenuOpen ? "Close" : "Menu"}</span>
+            <span className="text-xs">{isMenuOpen ? "Close" : "Menu"}</span>
             {isMenuOpen ? (
               <X aria-hidden="true" className="size-4" strokeWidth={2.5} />
             ) : (
               <Menu aria-hidden="true" className="size-4" strokeWidth={2.5} />
             )}
           </button>
-          {isMenuOpen && (
-            <div className="fixed right-0 top-[68px] z-40 h-[calc(100dvh-68px)] w-full overflow-y-auto border-l border-slate-700 bg-[#172f3d] shadow-xl sm:top-[82px] sm:h-[calc(100dvh-82px)] sm:w-[420px]">
-              <div className="absolute inset-0">
+        </div>
+      </div>
+    </header>
+
+    {/* =========================================================================
+        MOBILE DRAWER (Outside sticky header to ensure natural touch & wheel scroll)
+    ========================================================================= */}
+    {isMenuOpen && (
+      <div className="fixed inset-x-0 bottom-0 top-[68px] z-50 h-[calc(100vh-68px)] overflow-hidden border-l border-slate-700 bg-[#172f3d] shadow-2xl sm:left-auto sm:right-0 sm:top-[82px] sm:h-[calc(100vh-82px)] sm:w-[420px]">
+        {/* Static Background Layer */}
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="object-cover object-center opacity-40"
+            fill
+            priority
+            sizes="(max-width: 640px) 100vw, 420px"
+            src="/images/S_260721_cropped_2400x1200-1440x720.webp"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#142936]/85 via-[#142936]/75 to-[#142936]/95" />
+        </div>
+
+        {/* Scrollable Content Container with Visible Scrollbar */}
+        <div className="drawer-scrollbar h-full w-full overflow-y-scroll overscroll-contain px-6 pb-36 pt-6 sm:px-8 sm:pb-24">
+          <nav
+            aria-label="Mobile Navigation Menu"
+            className="flex flex-col gap-3.5 shrink-0"
+            id="site-menu"
+          >
+            {navLinks.map((item) => (
+              <Link
+                className="text-xl font-medium leading-tight tracking-tight text-white transition-colors hover:text-[#b5883e] sm:text-2xl"
+                href={item.href}
+                key={item.label}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <section aria-labelledby="featured-heading" className="mt-8 shrink-0">
+            <h2
+              className="mb-2 text-base font-semibold text-brand-accent"
+              id="featured-heading"
+            >
+              FEATURED
+            </h2>
+            <Link
+              className="block overflow-hidden rounded-2xl border border-white/20 bg-[#142936]/45 p-3 backdrop-blur-sm transition-colors hover:bg-[#142936]/65"
+              href="/projects"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <div className="relative aspect-[1.65] w-full overflow-hidden rounded-xl bg-slate-200">
                 <Image
-                  alt=""
-                  aria-hidden="true"
-                  className="object-cover object-center opacity-45"
+                  alt="Architecture team gathered on a New York rooftop"
+                  className="object-cover"
                   fill
-                  priority
                   sizes="(max-width: 640px) 100vw, 420px"
                   src="/images/S_260721_cropped_2400x1200-1440x720.webp"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#142936]/85 via-[#142936]/75 to-[#142936]/95" />
               </div>
-              <div className="relative flex min-h-full flex-col px-6 pb-8 pt-5 sm:px-8 sm:pb-10">
-              <div className="mb-6 flex justify-end">
-                <button
-                  aria-label="Close menu"
-                  className="text-white transition-colors hover:text-[#d6a184]"
-                  onClick={() => setIsMenuOpen(false)}
-                  type="button"
-                >
-                  <X aria-hidden="true" className="size-6" />
-                </button>
-              </div>
-              <nav
-                aria-label="Menu"
-                className="flex flex-col gap-3"
-                id="site-menu"
-              >
-                {menuItems.map((item) => (
-                  <a
-                    className="text-2xl font-medium leading-tight tracking-tight text-white transition-colors hover:text-[#e4b396] sm:text-[30px]"
-                    href={item.href}
-                    key={item.label}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-              <section aria-labelledby="featured-heading" className="mt-7">
-                <h2
-                  className="mb-2 text-base font-semibold text-[#e4b396]"
-                  id="featured-heading"
-                >
-                  FEATURED
-                </h2>
-                <Link
-                  className="block overflow-hidden rounded-2xl border border-white/20 bg-[#142936]/45 p-3 backdrop-blur-sm transition-colors hover:bg-[#142936]/65"
-                  href="/projects"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <div className="relative aspect-[1.65] w-full overflow-hidden rounded-xl bg-slate-200">
-                    <Image
-                      alt="Architecture team gathered on a New York rooftop"
-                      className="object-cover"
-                      fill
-                      sizes="(max-width: 640px) 100vw, 420px"
-                      src="/images/S_260721_cropped_2400x1200-1440x720.webp"
-                    />
-                  </div>
-                  <span className="mt-3 block text-base font-semibold text-[#e4b396]">
-                    INOODEX
-                  </span>
-                  <span className="mt-1 block text-xl font-semibold leading-snug text-white">
-                    The people behind great architecture
-                  </span>
-                </Link>
-              </section>
-              </div>
-            </div>
-          )}
+              <span className="mt-3 block text-base font-semibold text-brand-accent">
+                INOODEX
+              </span>
+              <span className="mt-1 block text-xl font-semibold leading-snug text-white">
+                The people behind great architecture
+              </span>
+            </Link>
+          </section>
         </div>
       </div>
+    )}
       {isSearchOpen && (
         <div
           aria-label="Search Inoodex"
           aria-modal="false"
-          className="fixed right-0 top-[68px] z-[60] flex h-[calc(100dvh-68px)] w-full flex-col overflow-y-auto border-l border-zinc-200 bg-white px-5 pb-8 pt-3 shadow-xl sm:top-[82px] sm:h-[calc(100dvh-82px)] sm:w-[420px] sm:px-6 sm:pb-10 lg:w-[450px]"
+          className="fixed inset-x-0 bottom-0 top-[68px] z-50 overflow-hidden border-l border-zinc-200 bg-white shadow-2xl sm:left-auto sm:right-0 sm:top-[82px] sm:w-[420px] lg:w-[450px]"
           id="site-search"
           role="dialog"
         >
+          <div className="drawer-scrollbar h-full w-full overflow-y-auto px-5 pb-16 pt-3 sm:px-6 sm:pb-12">
           <div className="mb-3 flex justify-end">
             <button
               aria-label="Close search"
-              className="text-slate-700 transition-colors hover:text-[#bd7958]"
+              className="text-slate-700 transition-colors hover:text-brand-accent-strong"
               onClick={() => {
                 setIsSearchOpen(false);
                 setSearchQuery("");
@@ -280,7 +336,7 @@ export function Navbar() {
                 <div className="flex flex-wrap gap-2">
                   {popularSearches.map((term) => (
                     <button
-                      className="border border-zinc-200 px-2.5 py-1.5 text-sm font-medium text-zinc-700 transition-colors hover:border-[#d6a184] hover:bg-[#fbf5f0]"
+                      className="border border-zinc-200 px-2.5 py-1.5 text-sm font-medium text-zinc-700 transition-colors hover:border-brand-accent hover:bg-[#fbf5f0]"
                       key={term}
                       onClick={() => setSearchQuery(term)}
                       type="button"
@@ -321,7 +377,7 @@ export function Navbar() {
                           />
                         </div>
                         <div className="min-w-0">
-                          <span className="mb-1 block text-xs font-bold text-[#bd7958]">
+                          <span className="mb-1 block text-xs font-bold text-brand-accent-strong">
                             {result.category}
                           </span>
                           <span className="block text-base font-bold leading-snug text-slate-700 transition-colors group-hover:text-slate-500">
@@ -338,8 +394,9 @@ export function Navbar() {
                 </p>
               )}
             </section>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

@@ -63,7 +63,7 @@ export default function PeoplePage() {
       <section className="mx-auto max-w-[1640px] px-6 pb-12 pt-10 sm:px-10 sm:pb-16 sm:pt-14 lg:px-16 lg:pb-20 lg:pt-16">
         <div className="mb-9 grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end lg:mb-12">
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#a96343] sm:text-sm">
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent-strong sm:text-sm">
               PEOPLE / INOODEX
             </p>
             <h1 className="mt-4 max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-6xl lg:text-7xl">
@@ -98,9 +98,9 @@ export default function PeoplePage() {
       >
         <div className="mx-auto grid max-w-[1640px] gap-7 px-6 py-12 sm:px-10 sm:py-16 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16 lg:px-16 lg:py-20">
           <div className="flex items-start gap-4 lg:gap-5">
-            <span aria-hidden="true" className="mt-1 h-10 w-1 shrink-0 bg-[#bd7958]" />
+            <span aria-hidden="true" className="mt-1 h-10 w-1 shrink-0 bg-brand-accent" />
             <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#a96343] sm:text-sm">
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent-strong sm:text-sm">
               OUR WAY OF WORKING
             </p>
             <p className="mt-3 text-sm font-medium text-slate-500">
@@ -137,9 +137,9 @@ export default function PeoplePage() {
       >
         <div className="grid gap-8 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16">
           <div className="flex items-start gap-4">
-            <span aria-hidden="true" className="mt-1 h-10 w-1 shrink-0 bg-[#bd7958]" />
+            <span aria-hidden="true" className="mt-1 h-10 w-1 shrink-0 bg-brand-accent" />
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-[#a96343] sm:text-sm">
+              <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent-strong sm:text-sm">
                 PERSPECTIVES ACROSS THE PRACTICE
               </p>
               <p className="mt-3 max-w-xs text-sm leading-6 text-slate-500">
@@ -173,7 +173,7 @@ export default function PeoplePage() {
                     {perspective.description}
                   </p>
                   <Link
-                    className="mt-4 inline-flex text-sm font-semibold text-[#172f3d] underline decoration-[#bd7958] underline-offset-4 transition-colors hover:text-[#a96343]"
+                    className="mt-4 inline-flex text-sm font-semibold text-[#172f3d] underline decoration-brand-accent underline-offset-4 transition-colors hover:text-brand-accent-strong"
                     href={perspective.href}
                   >
                     {perspective.link}
@@ -192,9 +192,9 @@ export default function PeoplePage() {
         <div>
           <div className="mb-7 flex flex-col gap-4 border-b border-slate-200 pb-6 sm:mb-9 sm:flex-row sm:items-end sm:justify-between sm:pb-7">
             <div className="flex items-start gap-4">
-              <span aria-hidden="true" className="mt-1 h-9 w-1 shrink-0 bg-[#bd7958]" />
+              <span aria-hidden="true" className="mt-1 h-9 w-1 shrink-0 bg-brand-accent" />
               <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#a96343] sm:text-sm">
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent-strong sm:text-sm">
               WHAT GUIDES US
             </p>
               </div>
@@ -214,7 +214,7 @@ export default function PeoplePage() {
                 className={`border-t border-slate-200 py-5 sm:border-t-0 sm:px-6 sm:py-2 lg:px-9 ${index === 0 ? "sm:pl-0" : ""} ${index === principles.length - 1 ? "sm:pr-0" : ""}`}
                 key={principle.title}
               >
-                <span aria-hidden="true" className="mb-5 block h-px w-9 bg-[#bd7958]" />
+                <span aria-hidden="true" className="mb-5 block h-px w-9 bg-brand-accent" />
                 <h3 className="text-lg font-semibold tracking-tight sm:text-xl">
                   {principle.title}
                 </h3>
@@ -233,7 +233,7 @@ export default function PeoplePage() {
       >
         <div className="mx-auto flex max-w-[1640px] flex-col gap-7 px-6 py-12 sm:px-10 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:py-20">
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-[#e4b396] sm:text-sm">
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand-accent sm:text-sm">
               WORK WITH US
             </p>
             <h2
@@ -245,7 +245,7 @@ export default function PeoplePage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Link
-              className="inline-flex min-h-11 items-center justify-center bg-[#d6a184] px-5 text-sm font-semibold text-[#172f3d] transition-colors hover:bg-[#e4b396]"
+              className="inline-flex min-h-11 items-center justify-center bg-brand-accent px-5 text-sm font-semibold text-[#172f3d] transition-colors hover:bg-brand-accent"
               href="/careers"
             >
               Explore careers

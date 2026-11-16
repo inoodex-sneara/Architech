@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
 
@@ -9,38 +9,17 @@ type Review = {
   author: string;
   role: string;
   organization: string;
-  initials: string;
-  project: string;
   category: string;
-  logo: string;
-  rating: number;
   quote: string;
 };
 
 const reviews: Review[] = [
   {
-    id: "anwar",
-    author: "Engr. Noor E Alam",
-    role: "Executive Director",
-    organization: "Anwar Landmark",
-    initials: "NA",
-    project: "Gulshan Skyline Residences",
-    category: "RESIDENTIAL",
-    logo: "/clients/anwar-landmark.svg",
-    rating: 5,
-    quote:
-      "Inoodex brought a level of environmental sensitivity and computational precision to our residential towers that elevated the entire skyline. Their commitment to constructability and sustainable craft is second to none.",
-  },
-  {
     id: "sanmar",
     author: "Tariqur Rahman",
     role: "Head of Project Development",
     organization: "Sanmar Properties",
-    initials: "TR",
-    project: "Chattogram Gateway Complex",
     category: "COMMERCIAL",
-    logo: "/clients/sanmar.svg",
-    rating: 5,
     quote:
       "From the earliest master-planning sketches to the final material selection, Inoodex delivered a human-centric campus that redefined how people experience contemporary commercial spaces in Chattogram.",
   },
@@ -49,24 +28,25 @@ const reviews: Review[] = [
     author: "Prof. Dr. Harun Ur Rashid",
     role: "Founder & President",
     organization: "Kidney Foundation Bangladesh",
-    initials: "HR",
-    project: "Specialized Healthcare Facility",
     category: "HEALTHCARE",
-    logo: "/clients/kidney-foundation.png",
-    rating: 5,
     quote:
       "Healthcare architecture demands both operational rigor and profound empathy. Inoodex designed clinical and healing environments bathed in natural daylight that have measurably improved patient recovery.",
+  },
+  {
+    id: "anwar",
+    author: "Engr. Noor E Alam",
+    role: "Executive Director",
+    organization: "Anwar Landmark",
+    category: "RESIDENTIAL",
+    quote:
+      "Inoodex brought a level of environmental sensitivity and computational precision to our residential towers that elevated the entire skyline. Their commitment to constructability and sustainable craft is second to none.",
   },
   {
     id: "rangs",
     author: "Asif Moyeen",
     role: "Director of Architecture",
     organization: "Rangs Properties",
-    initials: "AM",
-    project: "Parametric Facade Innovation Hub",
     category: "WORKPLACE",
-    logo: "/clients/rangs.svg",
-    rating: 5,
     quote:
       "Working with Inoodex is an exercise in pushing design boundaries. Their parametric facade studies gave our flagship development a distinctive identity while drastically cutting HVAC solar heat gain.",
   },
@@ -75,26 +55,9 @@ const reviews: Review[] = [
     author: "Dr. Tazeen Ahmed",
     role: "Principal & Trustee",
     organization: "Sunnydale School",
-    initials: "TA",
-    project: "Inclusive Learning Commons",
     category: "EDUCATION",
-    logo: "/clients/sunnydale.png",
-    rating: 5,
     quote:
       "Our new academic campus is a living classroom. Inoodex crafted interconnected indoor-outdoor learning courtyards that inspire curiosity and foster a genuine sense of student community.",
-  },
-  {
-    id: "orion",
-    author: "Salman Obaidul Karim",
-    role: "Managing Director",
-    organization: "Orion Group",
-    initials: "SK",
-    project: "Orion Corporate Headquarters",
-    category: "CORPORATE",
-    logo: "/clients/orion.svg",
-    rating: 5,
-    quote:
-      "Inoodex approaches corporate headquarters as cultural anchors. The spatial flow, passive ventilation, and acoustic refinement make our new headquarters a joy to work in every day.",
   },
 ];
 
@@ -102,169 +65,206 @@ export function ReviewsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Show 3 cards per view on desktop, 2 on tablet, 1 on mobile
-  const maxIndex = reviews.length - 1;
+  const totalReviews = reviews.length; // 5
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % totalReviews);
+  }, [totalReviews]);
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  };
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + totalReviews) % totalReviews);
+  }, [totalReviews]);
 
+  // Auto-animation / Auto-slider with pause-on-hover & reduced-motion respect
   useEffect(() => {
+    if (isPaused) return;
+
     if (
-      isPaused ||
+      typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       return;
     }
 
     const intervalId = window.setInterval(() => {
-      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+      setCurrentIndex((prev) => (prev + 1) % totalReviews);
     }, 5000);
 
     return () => window.clearInterval(intervalId);
-  }, [currentIndex, isPaused, maxIndex]);
+  }, [isPaused, totalReviews]);
+
+  // Two visible review cards next to the feature image card
+  const review1 = reviews[currentIndex];
+  const review2 = reviews[(currentIndex + 1) % totalReviews];
 
   return (
     <section
       aria-labelledby="reviews-heading"
-      className="border-t border-slate-100 bg-[#f5f2ed] py-16 text-black sm:py-20 lg:py-24"
+      className="relative overflow-hidden bg-[#faf7f2] py-20 text-slate-900 sm:py-24 lg:py-28"
       id="reviews"
-      onBlurCapture={(event) => {
-        if (
-          !(event.relatedTarget instanceof Node) ||
-          !event.currentTarget.contains(event.relatedTarget)
-        ) {
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
           setIsPaused(false);
         }
       }}
-      onFocusCapture={() => setIsPaused(true)}
     >
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-16">
-        <div className="mb-10 flex flex-col items-center text-center sm:mb-12">
-          <div className="max-w-3xl">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-[#bd7958]" />
-              <p className="text-xs font-bold tracking-[0.22em] text-[#a86544] uppercase sm:text-sm">
-                VOICES OF APPRECIATION
-              </p>
-            </div>
-            <h2
-              className="font-sans text-3xl font-semibold uppercase leading-tight tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-5xl"
-              id="reviews-heading"
-            >
-              From our happy clients
-            </h2>
-            <p className="mx-auto mt-3.5 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base sm:leading-relaxed">
-              Reflections from developers, institutional patrons, and civic leaders on
-              shaping transformative spaces with Inoodex.
+      <div className="mx-auto max-w-[1520px] px-4 sm:px-8 lg:px-12">
+        {/* =========================================================================
+            HEADER ROW: TITLE ON LEFT, SUBTITLE & SLIDER CONTROLS ON RIGHT
+        ========================================================================= */}
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          {/* Left: Kicker & Main Headline */}
+          <div>
+            <p className="text-xs sm:text-[13px] font-semibold uppercase tracking-[0.24em] text-[#b5883e]">
+              + VOICES OF APPRECIATION
             </p>
-          </div>
-
-          <div className="mt-6 flex items-center gap-3">
-            <div aria-label="Choose a review" className="mr-2 flex items-center gap-1.5">
-              {reviews.map((review, index) => (
-                <button
-                  aria-current={currentIndex === index ? "true" : undefined}
-                  aria-label={`Show review from ${review.author}`}
-                  className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${
-                    currentIndex === index
-                      ? "w-6 bg-[#bd7958]"
-                      : "w-2 bg-slate-300 hover:bg-[#bd7958]/60"
-                  }`}
-                  key={review.id}
-                  onClick={() => setCurrentIndex(index)}
-                  type="button"
-                />
-              ))}
-            </div>
-            <button
-              aria-label="Previous review"
-              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition-all hover:border-[#bd7958] hover:bg-[#bd7958] hover:text-white active:scale-95 sm:h-11 sm:w-11"
-              onClick={prevSlide}
-              type="button"
+            <h2
+              id="reviews-heading"
+              className="mt-2 font-serif text-3xl sm:text-4xl lg:text-[46px] xl:text-[48px] font-normal leading-[1.12] tracking-tight text-slate-900 uppercase"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              aria-label="Next review"
-              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition-all hover:border-[#bd7958] hover:bg-[#bd7958] hover:text-white active:scale-95 sm:h-11 sm:w-11"
-              onClick={nextSlide}
-              type="button"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Reviews Cards Grid / Carousel */}
-        <div
-          aria-live="off"
-          className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-        >
-          <div className="review-card-enter group relative min-h-[360px] overflow-hidden rounded-2xl bg-[#172f3d] sm:rounded-3xl md:col-span-2 md:min-h-[420px] lg:col-span-1">
-            <Image
-              alt="A calm, warm interior with natural materials and a comfortable reading chair"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 33vw"
-              src="/images/client-testimonials-interior.png"
-            />
+              FROM OUR HAPPY CLIENTS
+            </h2>
           </div>
 
-          {[0, 1].map((offset) => {
-            const item = reviews[(currentIndex + offset) % reviews.length];
+          {/* Right: Subtitle & Navigation Buttons */}
+          <div className="flex flex-col sm:items-end gap-5">
+            <p className="max-w-md text-sm sm:text-[15px] leading-relaxed text-slate-600 sm:text-right font-normal">
+              Curated reflections from industry-leading visionaries on our
+              transformative architectural and design journey.
+            </p>
 
-            return (
-              <article
-                className="review-card-enter group relative flex min-h-[360px] flex-col justify-between rounded-2xl border border-white/80 bg-[#fcfaf7] p-6 shadow-[0_8px_30px_rgba(35,34,30,0.04)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(35,34,30,0.09)] sm:rounded-3xl sm:p-8 lg:min-h-[420px]"
-                key={`${item.id}-${offset}`}
-                style={{ animationDelay: `${offset * 90}ms` }}
+            {/* Prev / Next Circular Buttons */}
+            <div className="flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={prevSlide}
+                aria-label="Previous review"
+                className="flex h-10 w-10 sm:h-11 sm:w-11 cursor-pointer items-center justify-center rounded-full bg-[#b5883e] text-white shadow-xs transition-all duration-300 hover:bg-[#9d7432] active:scale-95"
               >
-                <div>
-                  <div className="flex items-center justify-between border-b border-stone-100 pb-5">
-                    <Image
-                      alt={`${item.organization} logo`}
-                      className="h-8 w-[120px] object-contain object-left"
-                      height={40}
-                      src={item.logo}
-                      unoptimized={item.logo.endsWith(".svg")}
-                      width={140}
-                    />
-                    <Quote
-                      aria-hidden="true"
-                      className="size-8 fill-stone-200/70 text-stone-200/70"
-                    />
-                  </div>
-                  <div className="relative my-6">
-                    <blockquote className="text-[15px] font-medium leading-[1.75] text-slate-800 sm:text-base sm:leading-[1.8]">
-                      “{item.quote}”
-                    </blockquote>
-                  </div>
-                </div>
-
-                <div className="flex items-end justify-between gap-3 border-t border-stone-200/80 pt-5">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-bold text-slate-900">
-                      {item.author}
-                    </p>
-                    <p className="mt-1 truncate text-xs font-medium text-slate-500">
-                      {item.role}
-                    </p>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-[#172f3d] px-3 py-1.5 text-[9px] font-bold tracking-wider text-[#e4b396] uppercase">
-                    {item.category}
-                  </span>
-                </div>
-              </article>
-            );
-          })}
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={nextSlide}
+                aria-label="Next review"
+                className="flex h-10 w-10 sm:h-11 sm:w-11 cursor-pointer items-center justify-center rounded-full bg-[#b5883e] text-white shadow-xs transition-all duration-300 hover:bg-[#9d7432] active:scale-95"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </div>
 
-       
+        {/* =========================================================================
+            CARDS GRID (3-Column Layout: Feature Image + Review 1 + Review 2)
+        ========================================================================= */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 lg:grid-cols-3">
+          {/* -----------------------------------------------------------------------
+              CARD 1: FEATURE IMAGE CARD WITH FLOATING GLASS OVERLAY
+          ----------------------------------------------------------------------- */}
+          <div className="relative aspect-[4/4.8] w-full min-h-[380px] sm:min-h-[420px] overflow-hidden rounded-[28px] border border-stone-200/70 bg-white p-2.5 sm:p-3 shadow-xs">
+            <div className="relative h-full w-full overflow-hidden rounded-[20px] bg-stone-100">
+              <Image
+                src="/images/client-testimonials-clean.png"
+                alt="Architectural luxury interior reading lounge with natural materials"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover"
+              />
+
+              {/* Top-Right Badge: "Trusted by 15+ Institutional Leaders" */}
+              <div className="absolute right-3.5 top-3.5 z-10 rounded-2xl border border-white/70 bg-white/85 px-4 py-2.5 text-center shadow-md backdrop-blur-md">
+                <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-widest">
+                  Trusted by
+                </p>
+                <p className="font-serif text-sm sm:text-[15px] font-bold text-slate-900 mt-0.5">
+                  15+ Institutional Leaders
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* -----------------------------------------------------------------------
+              CARD 2: FIRST REVIEW CARD (Animated)
+          ----------------------------------------------------------------------- */}
+          <article
+            key={`review-card-1-${currentIndex}`}
+            className="review-card-enter group relative flex min-h-[380px] sm:min-h-[420px] flex-col justify-between rounded-[28px] border border-stone-200/70 bg-[#fdfbf7] p-7 sm:p-8 lg:p-9 shadow-xs transition-all duration-300 hover:shadow-md"
+          >
+            <div>
+              {/* Top Row: Quote icon on left, INOODEX pill on right */}
+              <div className="flex items-center justify-between">
+                <Quote className="h-6 w-6 fill-[#b5883e]/15 text-[#b5883e]" />
+                <span className="rounded-full bg-[#f3ece2] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#9d7432] uppercase">
+                  INOODEX
+                </span>
+              </div>
+
+              {/* Review Quote Body - Legible & Proportionate */}
+              <blockquote className="mt-6 sm:mt-7 font-sans text-base sm:text-[17px] lg:text-[17.5px] leading-[1.7] sm:leading-[1.75] text-slate-800 font-normal">
+                &ldquo;{review1.quote}&rdquo;
+              </blockquote>
+            </div>
+
+            {/* Bottom Meta & Category */}
+            <div className="mt-8 pt-5 border-t border-stone-200/60">
+              <p className="font-sans text-base sm:text-[17px] font-bold text-slate-900 tracking-tight">
+                {review1.author}
+              </p>
+              <p className="mt-1 text-xs sm:text-[13px] text-slate-500 font-medium">
+                {review1.role}
+              </p>
+
+              <span className="mt-4 inline-block rounded-full bg-[#f3ece2] px-3.5 py-1 text-[10.5px] sm:text-[11px] font-bold tracking-wider text-[#9d7432] uppercase">
+                {review1.category}
+              </span>
+            </div>
+          </article>
+
+          {/* -----------------------------------------------------------------------
+              CARD 3: SECOND REVIEW CARD (Animated, Visible on md/lg)
+          ----------------------------------------------------------------------- */}
+          <article
+            key={`review-card-2-${currentIndex}`}
+            style={{ animationDelay: "80ms" }}
+            className="review-card-enter group relative hidden min-h-[380px] sm:min-h-[420px] flex-col justify-between rounded-[28px] border border-stone-200/70 bg-[#fdfbf7] p-7 sm:p-8 lg:p-9 shadow-xs transition-all duration-300 hover:shadow-md lg:flex"
+          >
+            <div>
+              {/* Top Row: Quote icon on left, INOODEX pill on right */}
+              <div className="flex items-center justify-between">
+                <Quote className="h-6 w-6 fill-[#b5883e]/15 text-[#b5883e]" />
+                <span className="rounded-full bg-[#f3ece2] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#9d7432] uppercase">
+                  INOODEX
+                </span>
+              </div>
+
+              {/* Review Quote Body - Legible & Proportionate */}
+              <blockquote className="mt-6 sm:mt-7 font-sans text-base sm:text-[17px] lg:text-[17.5px] leading-[1.7] sm:leading-[1.75] text-slate-800 font-normal">
+                &ldquo;{review2.quote}&rdquo;
+              </blockquote>
+            </div>
+
+            {/* Bottom Meta & Category */}
+            <div className="mt-8 pt-5 border-t border-stone-200/60">
+              <p className="font-sans text-base sm:text-[17px] font-bold text-slate-900 tracking-tight">
+                {review2.author}
+              </p>
+              <p className="mt-1 text-xs sm:text-[13px] text-slate-500 font-medium">
+                {review2.role}
+              </p>
+
+              <span className="mt-4 inline-block rounded-full bg-[#f3ece2] px-3.5 py-1 text-[10.5px] sm:text-[11px] font-bold tracking-wider text-[#9d7432] uppercase">
+                {review2.category}
+              </span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   );
